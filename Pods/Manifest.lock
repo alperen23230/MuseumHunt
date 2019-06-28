@@ -1,0 +1,28 @@
+PODS:
+  - ImageSlideshow (1.8.0):
+    - ImageSlideshow/Core (= 1.8.0)
+  - ImageSlideshow/Core (1.8.0)
+  - SDWebImage (5.0.6):
+    - SDWebImage/Core (= 5.0.6)
+  - SDWebImage/Core (5.0.6)
+  - SideMenu (5.0.1)
+
+DEPENDENCIES:
+  - ImageSlideshow
+  - SDWebImage
+  - SideMenu
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - ImageSlideshow
+    - SDWebImage
+    - SideMenu
+
+SPEC CHECKSUMS:
+  ImageSlideshow: 197130fe349aafa9446f54277c792551d41eadf9
+  SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
+  SideMenu: 87efd943737bb83aedf0358884d09fcf5576636d
+
+PODFILE CHECKSUM: 7a580fa05a8412eccef353eae492f3ad883550b6
+
+COCOAPODS: 1.5.3

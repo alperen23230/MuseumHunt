@@ -1,0 +1,6 @@
+framework module Pods_MuseumHuntTests {
+  umbrella header "Pods-MuseumHuntTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
