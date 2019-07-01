@@ -63,7 +63,7 @@ open class SideMenuManager: NSObject {
      - viewSlideInOut: The existing view slides out while the menu slides in.
      - menuDissolveIn: The menu dissolves in over the existing view controller.
      */
-    open var menuPresentMode: MenuPresentMode = .viewSlideOut
+    open var menuPresentMode: MenuPresentMode = .menuSlideIn
     
     /// Prevents the same view controller (or a view controller of the same class) from being pushed more than once. Defaults to true.
     open var menuAllowPushOfSameClassTwice = true

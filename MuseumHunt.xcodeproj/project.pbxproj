@@ -9,11 +9,14 @@
 /* Begin PBXBuildFile section */
 		14F8E094624703507B46F7D1 /* Pods_MuseumHunt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BC4085D0D3BBBFA8CCE819C /* Pods_MuseumHunt.framework */; };
 		78696EB37F95AFA4918EBCEA /* Pods_MuseumHuntTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 314A1D213B8D861B1EE5AA8E /* Pods_MuseumHuntTests.framework */; };
+		843ED11822CA1FEB00146287 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843ED11722CA1FEB00146287 /* SettingsViewController.swift */; };
+		843ED11A22CA321E00146287 /* Beacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843ED11922CA321E00146287 /* Beacon.swift */; };
+		843ED11C22CA363B00146287 /* BeaconModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843ED11B22CA363B00146287 /* BeaconModelTests.swift */; };
+		843ED11E22CA396300146287 /* ArtifactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843ED11D22CA396300146287 /* ArtifactsTableViewController.swift */; };
 		8479930B22C63D6B0099D6D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8479930A22C63D6B0099D6D4 /* AppDelegate.swift */; };
 		8479931022C63D6B0099D6D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8479930E22C63D6B0099D6D4 /* Main.storyboard */; };
 		8479931222C63D720099D6D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8479931122C63D720099D6D4 /* Assets.xcassets */; };
 		8479931522C63D720099D6D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8479931322C63D720099D6D4 /* LaunchScreen.storyboard */; };
-		8479932022C63D720099D6D4 /* MuseumHuntTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8479931F22C63D720099D6D4 /* MuseumHuntTests.swift */; };
 		8479933222C652E60099D6D4 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8479933122C652E60099D6D4 /* MenuTableViewController.swift */; };
 		8479933622C654BB0099D6D4 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8479933422C654BB0099D6D4 /* SF-Pro-Display-Medium.otf */; };
 		8479933722C654BB0099D6D4 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8479933522C654BB0099D6D4 /* SF-Pro-Display-Regular.otf */; };
@@ -35,6 +38,10 @@
 		1BC4085D0D3BBBFA8CCE819C /* Pods_MuseumHunt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MuseumHunt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		314A1D213B8D861B1EE5AA8E /* Pods_MuseumHuntTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MuseumHuntTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		75713F1428ED2FD57876A3CF /* Pods-MuseumHunt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseumHunt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MuseumHunt/Pods-MuseumHunt.debug.xcconfig"; sourceTree = "<group>"; };
+		843ED11722CA1FEB00146287 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		843ED11922CA321E00146287 /* Beacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beacon.swift; sourceTree = "<group>"; };
+		843ED11B22CA363B00146287 /* BeaconModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconModelTests.swift; sourceTree = "<group>"; };
+		843ED11D22CA396300146287 /* ArtifactsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifactsTableViewController.swift; sourceTree = "<group>"; };
 		8479930722C63D6B0099D6D4 /* MuseumHunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuseumHunt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8479930A22C63D6B0099D6D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8479930F22C63D6B0099D6D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -42,7 +49,6 @@
 		8479931422C63D720099D6D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8479931622C63D720099D6D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8479931B22C63D720099D6D4 /* MuseumHuntTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuseumHuntTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8479931F22C63D720099D6D4 /* MuseumHuntTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuseumHuntTests.swift; sourceTree = "<group>"; };
 		8479932122C63D720099D6D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8479933122C652E60099D6D4 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		8479933422C654BB0099D6D4 /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
@@ -109,8 +115,8 @@
 		8479931E22C63D720099D6D4 /* MuseumHuntTests */ = {
 			isa = PBXGroup;
 			children = (
-				8479931F22C63D720099D6D4 /* MuseumHuntTests.swift */,
 				8479932122C63D720099D6D4 /* Info.plist */,
+				843ED11B22CA363B00146287 /* BeaconModelTests.swift */,
 			);
 			path = MuseumHuntTests;
 			sourceTree = "<group>";
@@ -118,6 +124,7 @@
 		8479932A22C640EF0099D6D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				843ED11922CA321E00146287 /* Beacon.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -127,6 +134,8 @@
 			children = (
 				8479933122C652E60099D6D4 /* MenuTableViewController.swift */,
 				8479933822C65ED80099D6D4 /* MainPageTableViewController.swift */,
+				843ED11722CA1FEB00146287 /* SettingsViewController.swift */,
+				843ED11D22CA396300146287 /* ArtifactsTableViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -249,6 +258,7 @@
 					};
 					8479931A22C63D720099D6D4 = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 8479930622C63D6B0099D6D4;
 					};
 				};
@@ -304,6 +314,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MuseumHunt/Pods-MuseumHunt-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
@@ -312,6 +323,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageSlideshow.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
@@ -373,8 +385,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8479933922C65ED80099D6D4 /* MainPageTableViewController.swift in Sources */,
+				843ED11E22CA396300146287 /* ArtifactsTableViewController.swift in Sources */,
 				8479933222C652E60099D6D4 /* MenuTableViewController.swift in Sources */,
+				843ED11A22CA321E00146287 /* Beacon.swift in Sources */,
 				8479930B22C63D6B0099D6D4 /* AppDelegate.swift in Sources */,
+				843ED11822CA1FEB00146287 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,7 +397,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8479932022C63D720099D6D4 /* MuseumHuntTests.swift in Sources */,
+				843ED11C22CA363B00146287 /* BeaconModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,6 +591,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MTMVBPSRA5;
 				INFOPLIST_FILE = MuseumHuntTests/Info.plist;
@@ -586,6 +602,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.alperenunal.MuseumHuntTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MuseumHunt.app/MuseumHunt";
@@ -598,6 +615,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MTMVBPSRA5;
 				INFOPLIST_FILE = MuseumHuntTests/Info.plist;

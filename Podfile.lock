@@ -1,4 +1,5 @@
 PODS:
+  - Eureka (4.3.1)
   - ImageSlideshow (1.8.0):
     - ImageSlideshow/Core (= 1.8.0)
   - ImageSlideshow/Core (1.8.0)
@@ -8,21 +9,24 @@ PODS:
   - SideMenu (5.0.1)
 
 DEPENDENCIES:
+  - Eureka
   - ImageSlideshow
   - SDWebImage
   - SideMenu
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Eureka
     - ImageSlideshow
     - SDWebImage
     - SideMenu
 
 SPEC CHECKSUMS:
+  Eureka: 28ea296f06710f6745266b71f17862048941a32d
   ImageSlideshow: 197130fe349aafa9446f54277c792551d41eadf9
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   SideMenu: 87efd943737bb83aedf0358884d09fcf5576636d
 
-PODFILE CHECKSUM: 7a580fa05a8412eccef353eae492f3ad883550b6
+PODFILE CHECKSUM: d530eb50f5b80d838ccde12d4871c074cc8263f4
 
 COCOAPODS: 1.5.3

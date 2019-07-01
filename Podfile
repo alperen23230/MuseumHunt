@@ -8,6 +8,7 @@ target 'MuseumHunt' do
     pod 'SideMenu'
     pod 'ImageSlideshow'
     pod 'SDWebImage'
+    pod 'Eureka'
 
   target 'MuseumHuntTests' do
     inherit! :search_paths

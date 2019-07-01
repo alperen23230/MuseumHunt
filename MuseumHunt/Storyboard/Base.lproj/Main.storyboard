@@ -43,9 +43,13 @@
                                             <constraints>
                                                 <constraint firstItem="xZG-zJ-Hef" firstAttribute="centerY" secondItem="yFI-8e-KkN" secondAttribute="centerY" id="DU1-0W-qa3"/>
                                                 <constraint firstItem="xZG-zJ-Hef" firstAttribute="leading" secondItem="yFI-8e-KkN" secondAttribute="leading" constant="20" id="qCp-QI-5Jh"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xZG-zJ-Hef" secondAttribute="trailing" constant="20" id="ue3-XH-Cta"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <segue destination="dCY-1b-8kF" kind="show" id="2Gt-cx-XRq"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Ize-Cu-1BS">
                                         <rect key="frame" x="0.0" y="65" width="414" height="65"/>
@@ -63,10 +67,14 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="8CT-qg-eoN" firstAttribute="leading" secondItem="p8a-3f-x2j" secondAttribute="leading" constant="20" id="92Z-cY-qqn"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8CT-qg-eoN" secondAttribute="trailing" constant="20" id="GXM-1j-6ce"/>
                                                 <constraint firstItem="8CT-qg-eoN" firstAttribute="centerY" secondItem="p8a-3f-x2j" secondAttribute="centerY" id="VX0-CE-mNE"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <segue destination="GST-8i-y3a" kind="show" id="gfH-ws-UBm"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -81,6 +89,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="euk-Pc-4Z0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2882.608695652174" y="-210.26785714285714"/>
+        </scene>
+        <!--Artifacts-->
+        <scene sceneID="Xje-PJ-ET8">
+            <objects>
+                <tableViewController id="dCY-1b-8kF" customClass="ArtifactsTableViewController" customModule="MuseumHunt" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="g9V-cF-p3c">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="onb-Mo-Eo6">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="onb-Mo-Eo6" id="k3q-49-LlC">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dCY-1b-8kF" id="TYH-zn-0aF"/>
+                            <outlet property="delegate" destination="dCY-1b-8kF" id="l7q-Lb-so3"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Artifacts" id="dLF-yY-ciB"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tdU-fr-ZIO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4291" y="-521"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="qIW-Li-WCq">
+            <objects>
+                <viewController id="GST-8i-y3a" customClass="SettingsViewController" customModule="MuseumHunt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YC1-eM-L1e">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="sAw-JU-is4"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="wss-Mp-cco"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zz6-C9-Mx9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4290" y="224"/>
         </scene>
         <!--Main Page View-->
         <scene sceneID="OGz-Qe-29m">
@@ -124,7 +177,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4BR-bP-7iV">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="leftSide" value="YES"/>
