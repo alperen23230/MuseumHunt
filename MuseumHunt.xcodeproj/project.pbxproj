@@ -13,6 +13,8 @@
 		843ED11A22CA321E00146287 /* Beacon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843ED11922CA321E00146287 /* Beacon.swift */; };
 		843ED11C22CA363B00146287 /* BeaconModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843ED11B22CA363B00146287 /* BeaconModelTests.swift */; };
 		843ED11E22CA396300146287 /* ArtifactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843ED11D22CA396300146287 /* ArtifactsTableViewController.swift */; };
+		843ED12022CA473A00146287 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843ED11F22CA473A00146287 /* APIClient.swift */; };
+		843ED12222CA4ABC00146287 /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843ED12122CA4ABC00146287 /* APIClientTests.swift */; };
 		8479930B22C63D6B0099D6D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8479930A22C63D6B0099D6D4 /* AppDelegate.swift */; };
 		8479931022C63D6B0099D6D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8479930E22C63D6B0099D6D4 /* Main.storyboard */; };
 		8479931222C63D720099D6D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8479931122C63D720099D6D4 /* Assets.xcassets */; };
@@ -42,6 +44,8 @@
 		843ED11922CA321E00146287 /* Beacon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beacon.swift; sourceTree = "<group>"; };
 		843ED11B22CA363B00146287 /* BeaconModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconModelTests.swift; sourceTree = "<group>"; };
 		843ED11D22CA396300146287 /* ArtifactsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifactsTableViewController.swift; sourceTree = "<group>"; };
+		843ED11F22CA473A00146287 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		843ED12122CA4ABC00146287 /* APIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTests.swift; sourceTree = "<group>"; };
 		8479930722C63D6B0099D6D4 /* MuseumHunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MuseumHunt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8479930A22C63D6B0099D6D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8479930F22C63D6B0099D6D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 			children = (
 				8479932122C63D720099D6D4 /* Info.plist */,
 				843ED11B22CA363B00146287 /* BeaconModelTests.swift */,
+				843ED12122CA4ABC00146287 /* APIClientTests.swift */,
 			);
 			path = MuseumHuntTests;
 			sourceTree = "<group>";
@@ -178,6 +183,7 @@
 		8479933A22C65FF50099D6D4 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				843ED11F22CA473A00146287 /* APIClient.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -385,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8479933922C65ED80099D6D4 /* MainPageTableViewController.swift in Sources */,
+				843ED12022CA473A00146287 /* APIClient.swift in Sources */,
 				843ED11E22CA396300146287 /* ArtifactsTableViewController.swift in Sources */,
 				8479933222C652E60099D6D4 /* MenuTableViewController.swift in Sources */,
 				843ED11A22CA321E00146287 /* Beacon.swift in Sources */,
@@ -398,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				843ED11C22CA363B00146287 /* BeaconModelTests.swift in Sources */,
+				843ED12222CA4ABC00146287 /* APIClientTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
