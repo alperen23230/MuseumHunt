@@ -21,8 +21,8 @@ class BeaconModelTests: XCTestCase {
     }
 
     func testBeaconModelInit_whenCreate_takeSameValue(){
-        let beacon1 = Beacon(uuid: "abc", major: 123, minor: 456)
-        let beacon2 = Beacon(uuid: "abc", major: 123, minor: 456)
+        let beacon1 = Beacon(uuid: "abc", major: 123, minor: 456, proximity: nil)
+        let beacon2 = Beacon(uuid: "abc", major: 123, minor: 456, proximity: nil)
         
         XCTAssertEqual(beacon1, beacon2)
     }

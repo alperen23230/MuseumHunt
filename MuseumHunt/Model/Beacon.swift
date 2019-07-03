@@ -15,6 +15,10 @@ struct Beacon: Codable, Equatable {
     var minor: Int
     var proximity: String?
     
+}
+
+extension Beacon {
+    //This method for comparison of 2 Beacon
     static func ==(lhs: Beacon, rhs: Beacon) -> Bool {
         return lhs.uuid == rhs.uuid && lhs.major == rhs.major && lhs.minor == rhs.minor
     }

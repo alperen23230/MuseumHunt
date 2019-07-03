@@ -20,13 +20,14 @@ class APIClientTests: XCTestCase {
     }
     
     func testAPIClientURLComponent(){
-        let url = "https://api.com/getAllBeacons"
+        let urlString = "https://beamityapi20190703022513.azurewebsites.net/api/artifact/getallartifacts"
         
-        guard let realURL = URL(string: url) else { XCTFail(); return }
-        var apiClient = APIClient(urlHost: "api.com", endpoint: EndPoint.getAllMainPageContents)
-        apiClient.endpoint = EndPoint.getAllBeacons
+        guard let url = URL(string: urlString) else { XCTFail(); return }
+        var apiClient = APIClient(urlHost: "beamityapi20190703022513.azurewebsites.net", endpoint: EndPoint.getAllArtifacts)
         
-        XCTAssertEqual(apiClient.urlComponent.url, realURL)
+        apiClient.endpoint = EndPoint.getAllArtifacts
+        
+        XCTAssertEqual(apiClient.urlComponent.url, url)
     }
 
 }

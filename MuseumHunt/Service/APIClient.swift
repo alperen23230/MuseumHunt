@@ -9,25 +9,25 @@
 import Foundation
 
 enum EndPoint: String {
-    case getAllBeacons = "/getAllBeacons"
-    case getAllMainPageContents = "/getAllMainPageContents"
+    case getAllArtifacts = "/api/artifact/getallartifacts"
 }
 
 struct APIClient {
     
-    var urlHost: String
+    var urlHost = "https://beamityapi20190703022513.azurewebsites.net/"
     var endpoint: EndPoint
     
     var urlComponent: URLComponents {
-        get {
+        get{
             var urlComponent = URLComponents()
             urlComponent.scheme = "https"
             urlComponent.host = urlHost
             urlComponent.path = endpoint.rawValue
-        
+            
             return urlComponent
         }
     }
     
+   
     
 }
