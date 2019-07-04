@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KRProgressHUD
 
 class ArtifactsTableViewController: UITableViewController {
     
@@ -25,10 +26,31 @@ class ArtifactsTableViewController: UITableViewController {
     
     func fetchArtifactData(){
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            self?.artifactVM.fetchAndParseArtifacts()
-            DispatchQueue.main.async {
-                self?.artifactVM.loadCategories()
-                self?.tableView.reloadData()
+            self?.fetchAndParseArtifacts()
+        }
+    }
+    
+    func fetchAndParseArtifacts(){
+        APIClient.sharedInstance.fetchAllArtfiacts { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let artifacts):
+                for artifact in artifacts{
+                    self.artifactVM.artifacts.append(artifact)
+                    DispatchQueue.main.async {
+                        let artifactCache = ArtifactCache()
+                        artifactCache.name = artifact.name
+                        artifactCache.floorName = artifact.floorName
+                        artifactCache.roomName = artifact.roomName
+                        artifactCache.buildingName = artifact.buildingName
+                        artifactCache.imageURL = artifact.mainImageURL
+                        self.artifactVM.saveArtifactCache(artifact: artifactCache)
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
         }
     }
@@ -42,19 +64,27 @@ extension ArtifactsTableViewController {
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
-        return artifactVM.artifactsCache?.count ?? 0
-        
+        if launch == "FirstTime" {
+            return self.artifactVM.artifacts.count
+        } else {
+           return artifactVM.artifactsCache?.count ?? 0
+        }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "artifactCell") as! ArtifactTableViewCell
         
-        
-        let artifact = artifactVM.artifactsCache?[indexPath.row]
-        
-        guard let artifactCache = artifact else { return UITableViewCell() }
-        
-        cell.setArtifactCache(artifact: artifactCache)
+        if launch == "FirstTime"{
+            let artifact = artifactVM.artifacts[indexPath.row]
+            
+            cell.setArtifact(artifact: artifact)
+        } else {
+            let artifact = artifactVM.artifactsCache?[indexPath.row]
+            
+            guard let artifactCache = artifact else { return UITableViewCell() }
+            
+            cell.setArtifactCache(artifact: artifactCache)
+        }
         
         return cell
     }

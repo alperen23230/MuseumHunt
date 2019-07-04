@@ -40,7 +40,6 @@ struct APIClient {
                 print(error!)
             } else{
                 guard let httpResponse = response as? HTTPURLResponse, let jsonData = data  else { return }
-                print(httpResponse.statusCode)
                 let artifactsData = try? JSONDecoder().decode([Artifact].self, from: jsonData)
                 guard let artifacts = artifactsData else { return }
             

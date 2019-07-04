@@ -9,33 +9,14 @@
 import Foundation
 import RealmSwift
 
-struct ArtifactViewModel {
+class ArtifactViewModel {
     
     let realm = try! Realm()
     
     var artifactsCache : Results<ArtifactCache>?
     
+    var artifacts = [Artifact]()
     
-    func fetchAndParseArtifacts(){
-        APIClient.sharedInstance.fetchAllArtfiacts { (result) in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let artifacts):
-                for artifact in artifacts{
-                    DispatchQueue.main.async {
-                        let artifactCache = ArtifactCache()
-                        artifactCache.name = artifact.name
-                        artifactCache.floorName = artifact.floorName
-                        artifactCache.roomName = artifact.roomName
-                        artifactCache.buildingName = artifact.buildingName
-                        artifactCache.imageURL = artifact.mainImageURL
-                        self.saveArtifactCache(artifact: artifactCache)
-                    }
-                }
-            }
-        }
-    }
     
     func saveArtifactCache(artifact: ArtifactCache){
         do{
@@ -47,7 +28,7 @@ struct ArtifactViewModel {
             print("Error: \(error)")
         }
     }
-    mutating func loadCategories(){
+    func loadCategories(){
         artifactsCache = realm.objects(ArtifactCache.self)
     }
     func updateArtifact(artifact: ArtifactCache){
