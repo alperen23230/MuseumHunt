@@ -39,7 +39,7 @@ struct APIClient {
                 completion(.failure(error!))
                 print(error!)
             } else{
-                guard let httpResponse = response as? HTTPURLResponse, let jsonData = data  else { return }
+                guard let _ = response as? HTTPURLResponse, let jsonData = data  else { return }
                 let artifactsData = try? JSONDecoder().decode([Artifact].self, from: jsonData)
                 guard let artifacts = artifactsData else { return }
             

@@ -27,7 +27,28 @@ class APIClientTests: XCTestCase {
         APIClient.sharedInstance.urlComponent.path = EndPoint.getAllArtifacts.rawValue
         
         XCTAssertEqual(APIClient.sharedInstance.urlComponent.url, url)
+    }
+    
+    func testAPIClient_AllArtifactsFetching(){
+        APIClient.sharedInstance.urlComponent.path = EndPoint.getAllArtifacts.rawValue
         
+        let sessionAnsweredExpectation = expectation(description: "Session")
+        
+        guard let url = APIClient.sharedInstance.urlComponent.url else { XCTFail();return }
+        
+        URLSession.shared.dataTask(with: url){(data, response, error) in
+            if error != nil{
+                XCTFail(error!.localizedDescription)
+            } else{
+                guard let _ = response as? HTTPURLResponse, let jsonData = data  else { return }
+                let artifactsData = try? JSONDecoder().decode([Artifact].self, from: jsonData)
+                guard let artifacts = artifactsData else { return }
+                sessionAnsweredExpectation.fulfill()
+                XCTAssertNotNil(artifacts)
+            }
+            }.resume()
+        
+        waitForExpectations(timeout: 5, handler: nil)
     }
 
 }

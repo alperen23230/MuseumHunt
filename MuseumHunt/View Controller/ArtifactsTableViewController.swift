@@ -13,10 +13,9 @@ class ArtifactsTableViewController: UITableViewController {
     
     var artifactVM = ArtifactViewModel()
     
-
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
         let isFetched = UserDefaults.standard.bool(forKey: "isFetched")
         if launch == "FirstTime" {
             if !isFetched {
@@ -72,20 +71,20 @@ extension ArtifactsTableViewController {
         return 100
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
-           return artifactVM.artifactsCache?.count ?? 0
+        
+        return artifactVM.artifactsCache?.count ?? 0
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "artifactCell") as! ArtifactTableViewCell
         
-            let artifact = artifactVM.artifactsCache?[indexPath.row]
-            
-            guard let artifactCache = artifact else { return UITableViewCell() }
-            
-            cell.setArtifactCache(artifact: artifactCache)
+        let artifact = artifactVM.artifactsCache?[indexPath.row]
         
-            return cell
+        guard let artifactCache = artifact else { return UITableViewCell() }
+        
+        cell.setArtifactCache(artifact: artifactCache)
+        
+        return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let artifact = artifactVM.artifactsCache?[indexPath.row] else { return }

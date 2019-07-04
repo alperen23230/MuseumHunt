@@ -31,23 +31,12 @@ class ArtifactTableViewCell: UITableViewCell {
         artifactImageView.clipsToBounds = true
     }
     
-    func setArtifact(artifact: Artifact){
-        guard let url = URL(string: artifact.mainImageURL) else { return }
-        artifactImageView.sd_setImage(with: url)
-        artifactNameLabel.text = artifact.name
-        artifactDetailLabel.text = "\(artifact.buildingName) \(artifact.floorName) \(artifact.roomName)"
-    }
-    
     func setArtifactCache(artifact: ArtifactCache){
         guard let url = URL(string: artifact.imageURL) else { return }
         artifactImageView.sd_setImage(with: url)
         artifactNameLabel.text = artifact.name
         artifactDetailLabel.text = "\(artifact.buildingName) \(artifact.floorName) \(artifact.roomName)"
         
-        if artifact.willTravel {
-            accessoryType = .checkmark
-        } else {
-            accessoryType = .none
-        }
+        accessoryType = artifact.willTravel ? .checkmark : .none
     }
 }
