@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 var launch = ""
 
@@ -17,6 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        do{
+            try Realm()
+        }
+        catch{
+            print("Error: \(error)")
+        }
         
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         

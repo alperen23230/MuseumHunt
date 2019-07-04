@@ -26,6 +26,7 @@
 		8479933722C654BB0099D6D4 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8479933522C654BB0099D6D4 /* SF-Pro-Display-Regular.otf */; };
 		8479933922C65ED80099D6D4 /* MainPageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8479933822C65ED80099D6D4 /* MainPageTableViewController.swift */; };
 		84B746B422CDD3F0008A7D29 /* ArtifactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B746B322CDD3F0008A7D29 /* ArtifactTableViewCell.swift */; };
+		84B746B822CE0BDC008A7D29 /* ArtifactCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B746B722CE0BDC008A7D29 /* ArtifactCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		8479933522C654BB0099D6D4 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		8479933822C65ED80099D6D4 /* MainPageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageTableViewController.swift; sourceTree = "<group>"; };
 		84B746B322CDD3F0008A7D29 /* ArtifactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifactTableViewCell.swift; sourceTree = "<group>"; };
+		84B746B722CE0BDC008A7D29 /* ArtifactCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifactCache.swift; sourceTree = "<group>"; };
 		8C5D1EFFA3AE30FC493B6A79 /* Pods-MuseumHuntTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseumHuntTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MuseumHuntTests/Pods-MuseumHuntTests.debug.xcconfig"; sourceTree = "<group>"; };
 		963E428FE10DAC49042D9768 /* Pods-MuseumHuntTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseumHuntTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MuseumHuntTests/Pods-MuseumHuntTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +140,7 @@
 			children = (
 				843ED11922CA321E00146287 /* Beacon.swift */,
 				84133D8A22CCF34200CB1C3E /* Artifact.swift */,
+				84B746B722CE0BDC008A7D29 /* ArtifactCache.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -339,6 +342,10 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-MuseumHunt/Pods-MuseumHunt-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework",
+				"${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework",
+				"${BUILT_PRODUCTS_DIR}/KRProgressHUD/KRProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 			);
@@ -348,6 +355,10 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageSlideshow.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRActivityIndicatorView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 			);
@@ -408,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8479933922C65ED80099D6D4 /* MainPageTableViewController.swift in Sources */,
+				84B746B822CE0BDC008A7D29 /* ArtifactCache.swift in Sources */,
 				84133D8D22CCF4CF00CB1C3E /* ArtifactViewModel.swift in Sources */,
 				843ED12022CA473A00146287 /* APIClient.swift in Sources */,
 				84B746B422CDD3F0008A7D29 /* ArtifactTableViewCell.swift in Sources */,

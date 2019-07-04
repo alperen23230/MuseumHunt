@@ -9,6 +9,8 @@ target 'MuseumHunt' do
     pod 'ImageSlideshow'
     pod 'SDWebImage'
     pod 'Eureka'
+    pod 'KRProgressHUD'
+    pod 'RealmSwift'
 
   target 'MuseumHuntTests' do
     inherit! :search_paths

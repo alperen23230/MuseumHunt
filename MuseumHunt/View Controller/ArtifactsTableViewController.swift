@@ -14,7 +14,13 @@ class ArtifactsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchArtifactData()
+        if launch == "FirstTime"{
+            fetchArtifactData()
+        } else {
+            //realm read code
+            artifactVM.loadCategories()
+            tableView.reloadData()
+        }
     }
     
     func fetchArtifactData(){
@@ -31,6 +37,15 @@ class ArtifactsTableViewController: UITableViewController {
             case .success(let artifacts):
                 for artifact in artifacts{
                     self.artifactVM.artifacts.append(artifact)
+                    DispatchQueue.main.async {
+                        let artifactCache = ArtifactCache()
+                        artifactCache.name = artifact.name
+                        artifactCache.floorName = artifact.floorName
+                        artifactCache.roomName = artifact.roomName
+                        artifactCache.buildingName = artifact.buildingName
+                        artifactCache.imageURL = artifact.mainImageURL
+                        self.artifactVM.saveArtifactCache(artifact: artifactCache)
+                    }
                 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -46,14 +61,27 @@ extension ArtifactsTableViewController {
         return 100
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return artifactVM.artifacts.count
+        if launch == "FirstTime"{
+            return artifactVM.artifacts.count
+        } else {
+            return artifactVM.artifactsCache?.count ?? 0
+        }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let artifact = artifactVM.artifacts[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "artifactCell") as! ArtifactTableViewCell
         
-        cell.setArtifact(artifact: artifact)
+        if launch == "FirstTime"{
+            let artifact = artifactVM.artifacts[indexPath.row]
+
+            cell.setArtifact(artifact: artifact)
+        } else {
+            let artifact = artifactVM.artifactsCache?[indexPath.row]
+            
+            guard let artifactCache = artifact else { return UITableViewCell() }
+            
+            cell.setArtifactCache(artifact: artifactCache)
+        }
         
         return cell
     }

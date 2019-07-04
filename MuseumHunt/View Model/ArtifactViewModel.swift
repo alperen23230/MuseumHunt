@@ -7,7 +7,26 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct ArtifactViewModel {
+    
+    let realm = try! Realm()
+    
     var artifacts = [Artifact]()
+    var artifactsCache : Results<ArtifactCache>?
+    
+    func saveArtifactCache(artifact: ArtifactCache){
+        do{
+            try realm.write {
+                realm.add(artifact)
+            }
+        }
+        catch{
+            print("Error: \(error)")
+        }
+    }
+    mutating func loadCategories(){
+        artifactsCache = realm.objects(ArtifactCache.self)
+    }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1020"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "36D7ACEA69D8DEBD78D77C0094B19C27"
+               BlueprintIdentifier = "318F9B702751893AA7A9E85EC644A7D0"
                BuildableName = "Pods_MuseumHunt.framework"
                BlueprintName = "Pods-MuseumHunt"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "36D7ACEA69D8DEBD78D77C0094B19C27"
+            BlueprintIdentifier = "318F9B702751893AA7A9E85EC644A7D0"
             BuildableName = "Pods_MuseumHunt.framework"
             BlueprintName = "Pods-MuseumHunt"
             ReferencedContainer = "container:Pods.xcodeproj">

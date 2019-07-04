@@ -3,6 +3,14 @@ PODS:
   - ImageSlideshow (1.8.0):
     - ImageSlideshow/Core (= 1.8.0)
   - ImageSlideshow/Core (1.8.0)
+  - KRActivityIndicatorView (3.0.2)
+  - KRProgressHUD (3.4.1):
+    - KRActivityIndicatorView (= 3.0.2)
+  - Realm (3.16.2):
+    - Realm/Headers (= 3.16.2)
+  - Realm/Headers (3.16.2)
+  - RealmSwift (3.16.2):
+    - Realm (= 3.16.2)
   - SDWebImage (5.0.6):
     - SDWebImage/Core (= 5.0.6)
   - SDWebImage/Core (5.0.6)
@@ -11,6 +19,8 @@ PODS:
 DEPENDENCIES:
   - Eureka
   - ImageSlideshow
+  - KRProgressHUD
+  - RealmSwift
   - SDWebImage
   - SideMenu
 
@@ -18,15 +28,23 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Eureka
     - ImageSlideshow
+    - KRActivityIndicatorView
+    - KRProgressHUD
+    - Realm
+    - RealmSwift
     - SDWebImage
     - SideMenu
 
 SPEC CHECKSUMS:
   Eureka: 28ea296f06710f6745266b71f17862048941a32d
   ImageSlideshow: 197130fe349aafa9446f54277c792551d41eadf9
+  KRActivityIndicatorView: a2022d5d3e366207d2690f6bcc550f83aa91241b
+  KRProgressHUD: 115363b48feb530ab1f36c4146ed22e779e0f5aa
+  Realm: 0e73b4edeb5b6a90da3d83206883b2e34e00eb38
+  RealmSwift: a81e650171ef0a5f999df1ed8d39ba8d6fce88a4
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
   SideMenu: 87efd943737bb83aedf0358884d09fcf5576636d
 
-PODFILE CHECKSUM: d530eb50f5b80d838ccde12d4871c074cc8263f4
+PODFILE CHECKSUM: b0c0eaec7fc76127362195afd199bb67340afd98
 
 COCOAPODS: 1.5.3
