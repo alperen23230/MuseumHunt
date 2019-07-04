@@ -15,8 +15,6 @@ class ArtifactViewModel {
     
     var artifactsCache : Results<ArtifactCache>?
     
-    var artifacts = [Artifact]()
-    
     
     func saveArtifactCache(artifact: ArtifactCache){
         do{

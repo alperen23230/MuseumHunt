@@ -12,11 +12,20 @@ import KRProgressHUD
 class ArtifactsTableViewController: UITableViewController {
     
     var artifactVM = ArtifactViewModel()
+    
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        let isFetched = UserDefaults.standard.bool(forKey: "isFetched")
         if launch == "FirstTime" {
-            fetchArtifactData()
+            if !isFetched {
+                fetchArtifactData()
+                UserDefaults.standard.set(true, forKey: "isFetched")
+            } else {
+                artifactVM.loadCategories()
+                tableView.reloadData()
+            }
         } else {
             //Realm Read Data
             artifactVM.loadCategories()
@@ -37,7 +46,6 @@ class ArtifactsTableViewController: UITableViewController {
                 print(error)
             case .success(let artifacts):
                 for artifact in artifacts{
-                    self.artifactVM.artifacts.append(artifact)
                     DispatchQueue.main.async {
                         let artifactCache = ArtifactCache()
                         artifactCache.name = artifact.name
@@ -49,6 +57,7 @@ class ArtifactsTableViewController: UITableViewController {
                     }
                 }
                 DispatchQueue.main.async {
+                    self.artifactVM.loadCategories()
                     self.tableView.reloadData()
                 }
             }
@@ -64,29 +73,19 @@ extension ArtifactsTableViewController {
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
-        if launch == "FirstTime" {
-            return self.artifactVM.artifacts.count
-        } else {
            return artifactVM.artifactsCache?.count ?? 0
-        }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "artifactCell") as! ArtifactTableViewCell
         
-        if launch == "FirstTime"{
-            let artifact = artifactVM.artifacts[indexPath.row]
-            
-            cell.setArtifact(artifact: artifact)
-        } else {
             let artifact = artifactVM.artifactsCache?[indexPath.row]
             
             guard let artifactCache = artifact else { return UITableViewCell() }
             
             cell.setArtifactCache(artifact: artifactCache)
-        }
         
-        return cell
+            return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let artifact = artifactVM.artifactsCache?[indexPath.row] else { return }
