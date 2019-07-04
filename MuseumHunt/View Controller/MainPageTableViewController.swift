@@ -11,5 +11,6 @@ import UIKit
 class MainPageTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(launch)
     }
 }

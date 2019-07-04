@@ -23,11 +23,11 @@ class APIClientTests: XCTestCase {
         let urlString = "https://beamityapi20190703022513.azurewebsites.net/api/artifact/getallartifacts"
         
         guard let url = URL(string: urlString) else { XCTFail(); return }
-        var apiClient = APIClient(urlHost: "beamityapi20190703022513.azurewebsites.net", endpoint: EndPoint.getAllArtifacts)
         
-        apiClient.endpoint = EndPoint.getAllArtifacts
+        APIClient.sharedInstance.urlComponent.path = EndPoint.getAllArtifacts.rawValue
         
-        XCTAssertEqual(apiClient.urlComponent.url, url)
+        XCTAssertEqual(APIClient.sharedInstance.urlComponent.url, url)
+        
     }
 
 }

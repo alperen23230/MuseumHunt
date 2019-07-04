@@ -8,6 +8,8 @@
 
 import UIKit
 
+var launch = ""
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -15,7 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        
+        if launchedBefore {
+            launch = "BeforeLaunch"
+        } else {
+            launch = "FirstTime"
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+        }
+        
         return true
     }
 }

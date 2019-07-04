@@ -94,18 +94,55 @@
         <scene sceneID="Xje-PJ-ET8">
             <objects>
                 <tableViewController id="dCY-1b-8kF" customClass="ArtifactsTableViewController" customModule="MuseumHunt" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="g9V-cF-p3c">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="g9V-cF-p3c">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="onb-Mo-Eo6">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="artifactCell" id="onb-Mo-Eo6" customClass="ArtifactTableViewCell" customModule="MuseumHunt" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="onb-Mo-Eo6" id="k3q-49-LlC">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gJI-Yw-gxZ">
+                                            <rect key="frame" x="12" y="10" width="80" height="80"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="80" id="Czh-hH-f0g"/>
+                                                <constraint firstAttribute="width" constant="80" id="OHH-s5-vzz"/>
+                                                <constraint firstAttribute="width" secondItem="gJI-Yw-gxZ" secondAttribute="height" multiplier="1:1" id="w8X-7J-Hsr"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2X-35-NeB">
+                                            <rect key="frame" x="104" y="20" width="262" height="20"/>
+                                            <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiL-LP-9bB">
+                                            <rect key="frame" x="104" y="55" width="262" height="20"/>
+                                            <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="l2X-35-NeB" secondAttribute="trailing" constant="48" id="9Ln-jh-Dh9"/>
+                                        <constraint firstAttribute="trailing" secondItem="tiL-LP-9bB" secondAttribute="trailing" constant="48" id="AeV-dF-hX0"/>
+                                        <constraint firstItem="gJI-Yw-gxZ" firstAttribute="centerY" secondItem="k3q-49-LlC" secondAttribute="centerY" id="HuI-Rk-i4S"/>
+                                        <constraint firstItem="tiL-LP-9bB" firstAttribute="leading" secondItem="gJI-Yw-gxZ" secondAttribute="trailing" constant="12" id="K1j-Sl-lZq"/>
+                                        <constraint firstItem="gJI-Yw-gxZ" firstAttribute="leading" secondItem="k3q-49-LlC" secondAttribute="leading" constant="12" id="QD5-8l-h3j"/>
+                                        <constraint firstItem="tiL-LP-9bB" firstAttribute="top" secondItem="l2X-35-NeB" secondAttribute="bottom" constant="15" id="YSJ-5g-KTv"/>
+                                        <constraint firstItem="l2X-35-NeB" firstAttribute="leading" secondItem="gJI-Yw-gxZ" secondAttribute="trailing" constant="12" id="fV9-Wt-qNn"/>
+                                        <constraint firstItem="l2X-35-NeB" firstAttribute="top" secondItem="k3q-49-LlC" secondAttribute="top" constant="20" id="o6C-2s-EwA"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="artifactDetailLabel" destination="tiL-LP-9bB" id="zvi-xU-HjL"/>
+                                    <outlet property="artifactImageView" destination="gJI-Yw-gxZ" id="8w7-zS-tQa"/>
+                                    <outlet property="artifactNameLabel" destination="l2X-35-NeB" id="man-No-gFg"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -117,7 +154,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tdU-fr-ZIO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4291" y="-521"/>
+            <point key="canvasLocation" x="4288.4057971014499" y="-521.65178571428567"/>
         </scene>
         <!--Settings-->
         <scene sceneID="qIW-Li-WCq">

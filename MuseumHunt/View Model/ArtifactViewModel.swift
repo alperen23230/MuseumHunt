@@ -9,5 +9,5 @@
 import Foundation
 
 struct ArtifactViewModel {
-    
+    var artifacts = [Artifact]()
 }

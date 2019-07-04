@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 struct Artifact: Codable {
     
@@ -16,5 +16,5 @@ struct Artifact: Codable {
     var roomName: String
     var floorName: String
     var buildingName: String
-    
+
 }
