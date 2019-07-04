@@ -13,8 +13,29 @@ struct ArtifactViewModel {
     
     let realm = try! Realm()
     
-    var artifacts = [Artifact]()
     var artifactsCache : Results<ArtifactCache>?
+    
+    
+    func fetchAndParseArtifacts(){
+        APIClient.sharedInstance.fetchAllArtfiacts { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let artifacts):
+                for artifact in artifacts{
+                    DispatchQueue.main.async {
+                        let artifactCache = ArtifactCache()
+                        artifactCache.name = artifact.name
+                        artifactCache.floorName = artifact.floorName
+                        artifactCache.roomName = artifact.roomName
+                        artifactCache.buildingName = artifact.buildingName
+                        artifactCache.imageURL = artifact.mainImageURL
+                        self.saveArtifactCache(artifact: artifactCache)
+                    }
+                }
+            }
+        }
+    }
     
     func saveArtifactCache(artifact: ArtifactCache){
         do{
@@ -28,5 +49,15 @@ struct ArtifactViewModel {
     }
     mutating func loadCategories(){
         artifactsCache = realm.objects(ArtifactCache.self)
+    }
+    func updateArtifact(artifact: ArtifactCache){
+        do{
+            try realm.write {
+                artifact.willTravel = !artifact.willTravel
+            }
+        }
+        catch{
+            print("Error: \(error)")
+        }
     }
 }
