@@ -11,15 +11,25 @@ import KRProgressHUD
 
 class ArtifactsTableViewController: UITableViewController {
     
-    var artifactVM = ArtifactViewModel()
+    var artifactVM: ArtifactViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //We create instance of Artifact View Model
+        artifactVM = ArtifactViewModel()
+        
+        //This method calls for fetch artifact from cache
+        artifactVM.loadCategories()
+        tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //This user default for
         let isFetched = UserDefaults.standard.bool(forKey: "isFetched")
         if launch == "FirstTime" {
             if !isFetched {
-                fetchArtifactData()
+                fetchAndParseArtifacts()
                 UserDefaults.standard.set(true, forKey: "isFetched")
             } else {
                 artifactVM.loadCategories()
@@ -32,13 +42,10 @@ class ArtifactsTableViewController: UITableViewController {
         }
     }
     
-    func fetchArtifactData(){
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            self?.fetchAndParseArtifacts()
-        }
-    }
-    
     func fetchAndParseArtifacts(){
+        DispatchQueue.main.async {
+            KRProgressHUD.show()
+        }
         APIClient.sharedInstance.fetchAllArtfiacts { (result) in
             switch result {
             case .failure(let error):
@@ -58,11 +65,11 @@ class ArtifactsTableViewController: UITableViewController {
                 DispatchQueue.main.async {
                     self.artifactVM.loadCategories()
                     self.tableView.reloadData()
+                    KRProgressHUD.dismiss()
                 }
             }
         }
     }
-    
 }
 
 //Table-View Methods
@@ -87,6 +94,7 @@ extension ArtifactsTableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         guard let artifact = artifactVM.artifactsCache?[indexPath.row] else { return }
         
         artifactVM.updateArtifact(artifact: artifact)

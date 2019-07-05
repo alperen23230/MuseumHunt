@@ -16,6 +16,7 @@ class ArtifactViewModel {
     var artifactsCache : Results<ArtifactCache>?
     
     
+    
     func saveArtifactCache(artifact: ArtifactCache){
         do{
             try realm.write {

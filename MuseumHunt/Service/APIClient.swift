@@ -11,6 +11,7 @@ import UIKit
 
 enum EndPoint: String {
     case getAllArtifacts = "/api/artifact/getallartifacts"
+    case getLocation = "/api/location/getalllocation"
 }
 
 enum HTTPMethod: String {
@@ -44,6 +45,23 @@ struct APIClient {
                 guard let artifacts = artifactsData else { return }
             
                 completion(.success(artifacts))
+            }
+        }.resume()
+    }
+    mutating func getLocation(completion: @escaping(Result<Location, Error>)->()){
+        urlComponent.path = EndPoint.getLocation.rawValue
+        
+        guard let url = urlComponent.url else { return }
+        
+        URLSession.shared.dataTask(with: url){(data, response, error) in
+            if error != nil{
+                completion(.failure(error!))
+                print(error!)
+            } else{
+                guard let _ = response as? HTTPURLResponse, let jsonData = data  else { return }
+                let locationData = try? JSONDecoder().decode([Location].self, from: jsonData)
+                guard let location = locationData else { return }
+                completion(.success(location[0]))
             }
         }.resume()
     }
