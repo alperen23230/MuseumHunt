@@ -9,12 +9,11 @@
 import Foundation
 import RealmSwift
 
-class ArtifactViewModel {
+final class ArtifactViewModel {
     
     let realm = try! Realm()
     
     var artifactsCache : Results<ArtifactCache>?
-    
     
     func saveArtifactCache(artifact: ArtifactCache){
         do{

@@ -18,3 +18,9 @@ class ArtifactCache: Object {
     @objc dynamic var isTravel : Bool = false
     @objc dynamic var willTravel : Bool = true
 }
+
+extension ArtifactCache {
+    override func isEqual(_ object: Any?) -> Bool {
+        return name == (object as? ArtifactCache)?.name && roomName == (object as? ArtifactCache)?.roomName && floorName == (object as? ArtifactCache)?.floorName && buildingName == (object as? ArtifactCache)?.buildingName && imageURL == (object as? ArtifactCache)?.imageURL && isTravel == (object as? ArtifactCache)?.isTravel && willTravel == (object as? ArtifactCache)?.willTravel
+    }
+}

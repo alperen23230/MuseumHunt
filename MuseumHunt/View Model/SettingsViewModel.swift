@@ -11,8 +11,9 @@ import KRProgressHUD
 import RealmSwift
 
 
-class SettingsViewModel {
+final class SettingsViewModel {
     
+    //Lets create instance of Realm
     let realm = try! Realm()
     
     //This instance for some CRUD methods for artifact
@@ -32,7 +33,7 @@ class SettingsViewModel {
         catch{
             print("Error: \(error)")
         }
-
+        
     }
     
     func fetchNewArtifacts(){

@@ -9,8 +9,24 @@
 import UIKit
 
 class MainPageTableViewController: UIViewController {
+    
+    @IBOutlet var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(launch)
+        tableView.delegate = self
+        tableView.dataSource = self
     }
+}
+
+extension MainPageTableViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
+    
 }

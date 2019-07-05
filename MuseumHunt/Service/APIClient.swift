@@ -30,6 +30,7 @@ struct APIClient {
         self.urlComponent.host = "beamityapi20190703022513.azurewebsites.net"
     }
     
+    //GET Request
     mutating func fetchAllArtfiacts(completion: @escaping(Result<[Artifact], Error>)->()){
         urlComponent.path = EndPoint.getAllArtifacts.rawValue
         
@@ -48,6 +49,7 @@ struct APIClient {
             }
         }.resume()
     }
+    //GET Request
     mutating func getLocation(completion: @escaping(Result<Location, Error>)->()){
         urlComponent.path = EndPoint.getLocation.rawValue
         
@@ -61,7 +63,7 @@ struct APIClient {
                 guard let _ = response as? HTTPURLResponse, let jsonData = data  else { return }
                 let locationData = try? JSONDecoder().decode([Location].self, from: jsonData)
                 guard let location = locationData else { return }
-                completion(.success(location[0]))
+                completion(.success(location[1]))
             }
         }.resume()
     }

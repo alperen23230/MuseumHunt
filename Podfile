@@ -15,6 +15,7 @@ target 'MuseumHunt' do
   target 'MuseumHuntTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'RealmSwift'
   end
 
 end

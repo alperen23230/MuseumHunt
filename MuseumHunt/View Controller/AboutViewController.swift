@@ -20,6 +20,7 @@ class AboutViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        //We are fetching location from API
         fetchLocation()
     }
     
@@ -32,6 +33,7 @@ class AboutViewController: UIViewController {
             case .failure(let error):
                 print(error)
             case .success(let location):
+                //And pass location to showOnMap function for showing location on the map
                 self.showOnMap(with: location)
                 DispatchQueue.main.async {
                     self.museumNameLabel.text = location.name
