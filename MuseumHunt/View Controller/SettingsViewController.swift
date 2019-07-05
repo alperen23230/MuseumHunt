@@ -10,9 +10,12 @@ import UIKit
 import Eureka
 
 class SettingsViewController: FormViewController {
+    
+    var settingsVM: SettingsViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        settingsVM = SettingsViewModel()
         setupForm()
     }
     
@@ -66,6 +69,6 @@ class SettingsViewController: FormViewController {
     
     //When the content updates button clicked this function works.
     func checkContentUpdateClicked(cell: ButtonCellOf<String>, row: ButtonRow){
-        print("clicked")
+        settingsVM.checkContentUpdate()
     }
 }

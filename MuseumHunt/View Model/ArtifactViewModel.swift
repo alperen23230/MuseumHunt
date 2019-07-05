@@ -16,7 +16,6 @@ class ArtifactViewModel {
     var artifactsCache : Results<ArtifactCache>?
     
     
-    
     func saveArtifactCache(artifact: ArtifactCache){
         do{
             try realm.write {
@@ -27,7 +26,7 @@ class ArtifactViewModel {
             print("Error: \(error)")
         }
     }
-    func loadCategories(){
+    func loadArtifacts(){
         artifactsCache = realm.objects(ArtifactCache.self)
     }
     func updateArtifact(artifact: ArtifactCache){

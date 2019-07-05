@@ -20,7 +20,7 @@ class ArtifactsTableViewController: UITableViewController {
         artifactVM = ArtifactViewModel()
         
         //This method calls for fetch artifact from cache
-        artifactVM.loadCategories()
+        artifactVM.loadArtifacts()
         tableView.reloadData()
     }
     
@@ -32,12 +32,12 @@ class ArtifactsTableViewController: UITableViewController {
                 fetchAndParseArtifacts()
                 UserDefaults.standard.set(true, forKey: "isFetched")
             } else {
-                artifactVM.loadCategories()
+                artifactVM.loadArtifacts()
                 tableView.reloadData()
             }
         } else {
             //Realm Read Data
-            artifactVM.loadCategories()
+            artifactVM.loadArtifacts()
             tableView.reloadData()
         }
     }
@@ -63,7 +63,7 @@ class ArtifactsTableViewController: UITableViewController {
                     }
                 }
                 DispatchQueue.main.async {
-                    self.artifactVM.loadCategories()
+                    self.artifactVM.loadArtifacts()
                     self.tableView.reloadData()
                     KRProgressHUD.dismiss()
                 }
