@@ -10,8 +10,6 @@ import UIKit
 import SDWebImage
 
 class ArtifactTableViewCell: UITableViewCell {
-
-    
     
     @IBOutlet weak var artifactImageView: UIImageView!
     
@@ -32,7 +30,8 @@ class ArtifactTableViewCell: UITableViewCell {
     }
     
     func setArtifactCache(artifact: ArtifactCache){
-        guard let url = URL(string: artifact.imageURL) else { return }
+        let urlBase = "https://testblobkayten.blob.core.windows.net/blobcontainer"
+        guard let url = URL(string: urlBase + artifact.imageURL) else { return }
         artifactImageView.sd_setImage(with: url)
         artifactNameLabel.text = artifact.name
         artifactDetailLabel.text = "\(artifact.buildingName) \(artifact.floorName) \(artifact.roomName)"

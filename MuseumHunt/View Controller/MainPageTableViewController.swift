@@ -10,7 +10,7 @@ import UIKit
 
 class MainPageTableViewController: UIViewController {
     
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,7 @@ class MainPageTableViewController: UIViewController {
     }
 }
 
-extension MainPageTableViewController: UITableViewDelegate, UITableViewDataSource{
+extension MainPageTableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }

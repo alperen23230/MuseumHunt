@@ -20,7 +20,6 @@
 		8479930B22C63D6B0099D6D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8479930A22C63D6B0099D6D4 /* AppDelegate.swift */; };
 		8479931022C63D6B0099D6D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8479930E22C63D6B0099D6D4 /* Main.storyboard */; };
 		8479931222C63D720099D6D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8479931122C63D720099D6D4 /* Assets.xcassets */; };
-		8479931522C63D720099D6D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8479931322C63D720099D6D4 /* LaunchScreen.storyboard */; };
 		8479933222C652E60099D6D4 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8479933122C652E60099D6D4 /* MenuTableViewController.swift */; };
 		8479933622C654BB0099D6D4 /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8479933422C654BB0099D6D4 /* SF-Pro-Display-Medium.otf */; };
 		8479933722C654BB0099D6D4 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8479933522C654BB0099D6D4 /* SF-Pro-Display-Regular.otf */; };
@@ -62,7 +61,6 @@
 		8479930A22C63D6B0099D6D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8479930F22C63D6B0099D6D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8479931122C63D720099D6D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8479931422C63D720099D6D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8479931622C63D720099D6D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8479931B22C63D720099D6D4 /* MuseumHuntTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MuseumHuntTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8479932122C63D720099D6D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -184,7 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				8479930E22C63D6B0099D6D4 /* Main.storyboard */,
-				8479931322C63D720099D6D4 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -333,7 +330,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8479933622C654BB0099D6D4 /* SF-Pro-Display-Medium.otf in Resources */,
-				8479931522C63D720099D6D4 /* LaunchScreen.storyboard in Resources */,
 				8479931222C63D720099D6D4 /* Assets.xcassets in Resources */,
 				8479933722C654BB0099D6D4 /* SF-Pro-Display-Regular.otf in Resources */,
 				8479931022C63D6B0099D6D4 /* Main.storyboard in Resources */,
@@ -509,14 +505,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		8479931322C63D720099D6D4 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8479931422C63D720099D6D4 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -641,6 +629,7 @@
 			baseConfigurationReference = 75713F1428ED2FD57876A3CF /* Pods-MuseumHunt.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MTMVBPSRA5;
 				INFOPLIST_FILE = "$(SRCROOT)/MuseumHunt/Supporting Files/Info.plist";
@@ -660,6 +649,7 @@
 			baseConfigurationReference = 18557B31478B74FABDDF2964 /* Pods-MuseumHunt.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MTMVBPSRA5;
 				INFOPLIST_FILE = "$(SRCROOT)/MuseumHunt/Supporting Files/Info.plist";
