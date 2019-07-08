@@ -51,8 +51,8 @@ class ArtifactsTableViewController: UITableViewController {
             case .failure(let error):
                 print(error)
             case .success(let artifacts):
-                for artifact in artifacts{
-                    DispatchQueue.main.async {
+                DispatchQueue.main.async {
+                    for artifact in artifacts{
                         let artifactCache = ArtifactCache()
                         artifactCache.name = artifact.name
                         artifactCache.floorName = artifact.floorName
@@ -61,8 +61,6 @@ class ArtifactsTableViewController: UITableViewController {
                         artifactCache.imageURL = artifact.mainImageURL
                         self.artifactVM.saveArtifactCache(artifact: artifactCache)
                     }
-                }
-                DispatchQueue.main.async {
                     self.artifactVM.loadArtifacts()
                     self.tableView.reloadData()
                     KRProgressHUD.dismiss()

@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MainPageContentTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var contentMainImageView: UIImageView!
-    @IBOutlet weak var contentTitleLabel: UILabel!
+    
+    @IBOutlet weak var contentNameLabel: UILabel!
+    
     @IBOutlet weak var contentDescriptionLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,6 +28,14 @@ class MainPageContentTableViewCell: UITableViewCell {
         super.layoutSubviews()
         contentMainImageView.layer.cornerRadius = contentMainImageView.bounds.height / 2
         contentMainImageView.clipsToBounds = true
+    }
+    
+    func setMainPageContent(content: MainPageContentCache){
+        let urlBase = "https://testblobkayten.blob.core.windows.net/blobcontainer"
+        guard let url = URL(string: urlBase + content.mainImageURL) else { return }
+        contentMainImageView.sd_setImage(with: url)
+        contentNameLabel.text = content.name
+        contentDescriptionLabel.text = content.descrpt
     }
     
 }

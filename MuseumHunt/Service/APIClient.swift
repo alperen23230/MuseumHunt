@@ -12,6 +12,7 @@ import UIKit
 enum EndPoint: String {
     case getAllArtifacts = "/api/artifact/getallartifacts"
     case getLocation = "/api/location/getalllocation"
+    case getMainPageContent = "/api/content/gethomecontents"
 }
 
 enum HTTPMethod: String {
@@ -66,6 +67,24 @@ struct APIClient {
                 completion(.success(location[1]))
             }
         }.resume()
+    }
+    //GET Request
+    mutating func getMainPageContent(completion: @escaping(Result<[MainPageContent], Error>)->()){
+        urlComponent.path = EndPoint.getMainPageContent.rawValue
+        
+        guard let url = urlComponent.url else { return }
+        
+        URLSession.shared.dataTask(with: url){(data, response, error) in
+            if error != nil{
+                completion(.failure(error!))
+                print(error!)
+            } else{
+                guard let _ = response as? HTTPURLResponse, let jsonData = data  else { return }
+                let mainPageContentData = try? JSONDecoder().decode([MainPageContent].self, from: jsonData)
+                guard let mainPageContents = mainPageContentData else { return }
+                completion(.success(mainPageContents))
+            }
+            }.resume()
     }
     
 }

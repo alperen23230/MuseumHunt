@@ -7,26 +7,85 @@
 //
 
 import UIKit
+import KRProgressHUD
 
-class MainPageTableViewController: UIViewController {
+class MainPageTableViewController: UITableViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    var mainPageContentVM: MainPageContentViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
+        
+        mainPageContentVM = MainPageContentViewModel()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        //This user default for
+        let isFetched = UserDefaults.standard.bool(forKey: "isFetchedMainPage")
+        if launch == "FirstTime" {
+            if !isFetched {
+                fetchMainPageContent()
+                UserDefaults.standard.set(true, forKey: "isFetchedMainPage")
+            } else {
+                mainPageContentVM.loadMainPageContents()
+                tableView.reloadData()
+            }
+        } else {
+            //Realm Read Data
+            mainPageContentVM.loadMainPageContents()
+            tableView.reloadData()
+        }
+    }
+    
+    func fetchMainPageContent(){
+        DispatchQueue.main.async {
+            KRProgressHUD.show()
+        }
+        APIClient.sharedInstance.getMainPageContent { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let mainPageContents):
+                    DispatchQueue.main.async {
+                        _ = mainPageContents.map({
+                            let mainPageContent = MainPageContentCache()
+                            mainPageContent.name = $0.name
+                            mainPageContent.title = $0.title
+                            mainPageContent.descrpt = $0.description
+                            mainPageContent.mainImageURL = $0.mainImageURL
+                            mainPageContent.slideImageURL = $0.slideImageURL
+                            mainPageContent.videoURL = $0.videoURL
+                            mainPageContent.audioURL = $0.audioURL
+                            mainPageContent.text = $0.text
+                            self.mainPageContentVM.saveMainPageContentCache(content: mainPageContent)
+                        })
+                        self.mainPageContentVM.loadMainPageContents()
+                        self.tableView.reloadData()
+                        KRProgressHUD.dismiss()
+                    }
+            }
+        }
     }
 }
 
-extension MainPageTableViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+extension MainPageTableViewController {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return mainPageContentVM.mainPageContentsCache?.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mainPageContentCell") as! MainPageContentTableViewCell
+        
+        let mainPageContent = mainPageContentVM.mainPageContentsCache?[indexPath.row]
+        
+        guard let content = mainPageContent else { return UITableViewCell() }
+        
+        cell.setMainPageContent(content: content)
+        
+        return cell
     }
-    
-    
 }

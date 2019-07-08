@@ -32,6 +32,12 @@
 		848FC3EB22CF90CE00BEEEE9 /* MainPageContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848FC3EA22CF90CE00BEEEE9 /* MainPageContentTableViewCell.swift */; };
 		84B746B422CDD3F0008A7D29 /* ArtifactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B746B322CDD3F0008A7D29 /* ArtifactTableViewCell.swift */; };
 		84B746B822CE0BDC008A7D29 /* ArtifactCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B746B722CE0BDC008A7D29 /* ArtifactCache.swift */; };
+		84E0540322D3539B00ED7A87 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0540222D3539B00ED7A87 /* ContentViewController.swift */; };
+		84E0540522D3590D00ED7A87 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0540422D3590D00ED7A87 /* ContentViewModel.swift */; };
+		84E0540722D35AA100ED7A87 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0540622D35AA100ED7A87 /* CustomButton.swift */; };
+		84E0540922D36F8F00ED7A87 /* MainPageContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0540822D36F8F00ED7A87 /* MainPageContent.swift */; };
+		84E0540B22D371F700ED7A87 /* MainPageContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0540A22D371F700ED7A87 /* MainPageContentViewModel.swift */; };
+		84E0540D22D383D200ED7A87 /* MainPageContentCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0540C22D383D200ED7A87 /* MainPageContentCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +82,12 @@
 		848FC3EA22CF90CE00BEEEE9 /* MainPageContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageContentTableViewCell.swift; sourceTree = "<group>"; };
 		84B746B322CDD3F0008A7D29 /* ArtifactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifactTableViewCell.swift; sourceTree = "<group>"; };
 		84B746B722CE0BDC008A7D29 /* ArtifactCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifactCache.swift; sourceTree = "<group>"; };
+		84E0540222D3539B00ED7A87 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
+		84E0540422D3590D00ED7A87 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		84E0540622D35AA100ED7A87 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		84E0540822D36F8F00ED7A87 /* MainPageContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageContent.swift; sourceTree = "<group>"; };
+		84E0540A22D371F700ED7A87 /* MainPageContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageContentViewModel.swift; sourceTree = "<group>"; };
+		84E0540C22D383D200ED7A87 /* MainPageContentCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageContentCache.swift; sourceTree = "<group>"; };
 		8C5D1EFFA3AE30FC493B6A79 /* Pods-MuseumHuntTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseumHuntTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MuseumHuntTests/Pods-MuseumHuntTests.debug.xcconfig"; sourceTree = "<group>"; };
 		963E428FE10DAC49042D9768 /* Pods-MuseumHuntTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseumHuntTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MuseumHuntTests/Pods-MuseumHuntTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -153,6 +165,8 @@
 				84133D8A22CCF34200CB1C3E /* Artifact.swift */,
 				84B746B722CE0BDC008A7D29 /* ArtifactCache.swift */,
 				848FC3E222CF289000BEEEE9 /* Location.swift */,
+				84E0540822D36F8F00ED7A87 /* MainPageContent.swift */,
+				84E0540C22D383D200ED7A87 /* MainPageContentCache.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -165,6 +179,7 @@
 				843ED11722CA1FEB00146287 /* SettingsViewController.swift */,
 				843ED11D22CA396300146287 /* ArtifactsTableViewController.swift */,
 				848FC3E022CF225D00BEEEE9 /* AboutViewController.swift */,
+				84E0540222D3539B00ED7A87 /* ContentViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -174,6 +189,8 @@
 			children = (
 				84133D8C22CCF4CF00CB1C3E /* ArtifactViewModel.swift */,
 				848FC3E422CF447000BEEEE9 /* SettingsViewModel.swift */,
+				84E0540422D3590D00ED7A87 /* ContentViewModel.swift */,
+				84E0540A22D371F700ED7A87 /* MainPageContentViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -193,6 +210,7 @@
 				8479931122C63D720099D6D4 /* Assets.xcassets */,
 				8479930A22C63D6B0099D6D4 /* AppDelegate.swift */,
 				848FC3E822CF6DE500BEEEE9 /* RealmProvider.swift */,
+				84E0540622D35AA100ED7A87 /* CustomButton.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -457,8 +475,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E0540D22D383D200ED7A87 /* MainPageContentCache.swift in Sources */,
 				8479933922C65ED80099D6D4 /* MainPageTableViewController.swift in Sources */,
+				84E0540722D35AA100ED7A87 /* CustomButton.swift in Sources */,
 				848FC3EB22CF90CE00BEEEE9 /* MainPageContentTableViewCell.swift in Sources */,
+				84E0540922D36F8F00ED7A87 /* MainPageContent.swift in Sources */,
+				84E0540322D3539B00ED7A87 /* ContentViewController.swift in Sources */,
 				84B746B822CE0BDC008A7D29 /* ArtifactCache.swift in Sources */,
 				84133D8D22CCF4CF00CB1C3E /* ArtifactViewModel.swift in Sources */,
 				843ED12022CA473A00146287 /* APIClient.swift in Sources */,
@@ -470,8 +492,10 @@
 				843ED11A22CA321E00146287 /* Beacon.swift in Sources */,
 				8479930B22C63D6B0099D6D4 /* AppDelegate.swift in Sources */,
 				843ED11822CA1FEB00146287 /* SettingsViewController.swift in Sources */,
+				84E0540522D3590D00ED7A87 /* ContentViewModel.swift in Sources */,
 				84133D8B22CCF34200CB1C3E /* Artifact.swift in Sources */,
 				848FC3E522CF447000BEEEE9 /* SettingsViewModel.swift in Sources */,
+				84E0540B22D371F700ED7A87 /* MainPageContentViewModel.swift in Sources */,
 				848FC3E922CF6DE500BEEEE9 /* RealmProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

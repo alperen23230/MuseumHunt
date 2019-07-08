@@ -14,7 +14,6 @@ struct Beacon: Codable, Equatable {
     var major: Int
     var minor: Int
     var proximity: String?
-    
 }
 
 extension Beacon {
