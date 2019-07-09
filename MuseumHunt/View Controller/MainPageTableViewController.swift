@@ -88,4 +88,21 @@ extension MainPageTableViewController {
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToContent", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! ContentViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow{
+            let mainPageContent = mainPageContentVM.mainPageContentsCache?[indexPath.row]
+            
+            guard let content = mainPageContent else { return }
+            
+            destinationVC.content = Content(title: content.title, videoURL: content.videoURL, slideImageURL: content.slideImageURL, audioURL: content.audioURL, text: content.text)
+        }
+
+    }
 }

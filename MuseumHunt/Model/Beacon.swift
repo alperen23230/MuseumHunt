@@ -10,6 +10,7 @@ import Foundation
 
 struct Beacon: Codable, Equatable {
     
+    var name: String
     var uuid: String
     var major: Int
     var minor: Int
