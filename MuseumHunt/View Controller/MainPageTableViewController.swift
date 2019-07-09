@@ -18,6 +18,8 @@ class MainPageTableViewController: UITableViewController, CLLocationManagerDeleg
     
     var currentContent: Content!
     
+    var beaconRegions = [CLBeaconRegion]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,33 +32,67 @@ class MainPageTableViewController: UITableViewController, CLLocationManagerDeleg
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         if beacons.count > 0 {
-            for beacon in beacons {
-                getContentWithBeacon(beaconRegion: beacon)
-            }
+                getContentWithBeacon(beaconRegion: beacons.first!)
         } else {
             print("unknown")
         }
     }
 
     func getContentWithBeacon(beaconRegion: CLBeacon){
+         var beacon = Beacon(name: nil, uuid: beaconRegion.proximityUUID.uuidString, major: Int(truncating: beaconRegion.major), minor: Int(truncating: beaconRegion.minor), proximity: nil)
         switch beaconRegion.proximity {
         case .far:
             print("far")
-        case .near:
-            let beacon = Beacon(name: nil, uuid: beaconRegion.proximityUUID.uuidString, major: Int(truncating: beaconRegion.major), minor: Int(truncating: beaconRegion.minor), proximity: "Near")
+            beacon.proximity = "Far"
             APIClient.sharedInstance.getContentWithBeacon(beacon: beacon) { (result) in
                 switch result{
                 case .failure(let error):
-                    print(error)
+                    print(error.localizedDescription)
                 case .success(let content):
                     DispatchQueue.main.async {
                         self.currentContent = Content(mainImageURL: content.mainImageURL, title: content.title, videoURL: content.videoURL, slideImageURL: content.slideImageURL, audioURL: content.audioURL, text: content.text)
                         self.performSegue(withIdentifier: "goToContent", sender: nil)
+                        let currentBeaconIndex = self.beaconRegions.firstIndex(of: CLBeaconRegion(proximityUUID: beaconRegion.proximityUUID, major: CLBeaconMajorValue(truncating: beaconRegion.major), minor: CLBeaconMinorValue(truncating: beaconRegion.minor), identifier: beaconRegion.proximityUUID.uuidString))
+                        self.locationManager.stopRangingBeacons(in: self.beaconRegions[currentBeaconIndex!])
+                    }
+                }
+            }
+        case .near:
+            print("near")
+            beacon.proximity = "Near"
+            APIClient.sharedInstance.getContentWithBeacon(beacon: beacon) { (result) in
+                switch result{
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .success(let content):
+                    DispatchQueue.main.async {
+                        self.currentContent = Content(mainImageURL: content.mainImageURL, title: content.title, videoURL: content.videoURL, slideImageURL: content.slideImageURL, audioURL: content.audioURL, text: content.text)
+                        self.performSegue(withIdentifier: "goToContent", sender: nil)
+                        
+                        let currentBeaconIndex = self.beaconRegions.firstIndex(of: CLBeaconRegion(proximityUUID: beaconRegion.proximityUUID, major: CLBeaconMajorValue(truncating: beaconRegion.major), minor: CLBeaconMinorValue(truncating: beaconRegion.minor), identifier: beaconRegion.proximityUUID.uuidString))
+                        
+                        self.locationManager.stopRangingBeacons(in: self.beaconRegions[currentBeaconIndex!])
                     }
                 }
             }
         case .immediate:
             print("immediate")
+            beacon.proximity = "Immediate"
+            APIClient.sharedInstance.getContentWithBeacon(beacon: beacon) { (result) in
+                switch result{
+                case .failure(let error):
+                    print(error.localizedDescription)
+                case .success(let content):
+                    DispatchQueue.main.async {
+                        self.currentContent = Content(mainImageURL: content.mainImageURL, title: content.title, videoURL: content.videoURL, slideImageURL: content.slideImageURL, audioURL: content.audioURL, text: content.text)
+                        
+                        self.performSegue(withIdentifier: "goToContent", sender: nil)
+                        
+                        let currentBeaconIndex = self.beaconRegions.firstIndex(of: CLBeaconRegion(proximityUUID: beaconRegion.proximityUUID, major: CLBeaconMajorValue(truncating: beaconRegion.major), minor: CLBeaconMinorValue(truncating: beaconRegion.minor), identifier: beaconRegion.proximityUUID.uuidString))
+                        self.locationManager.stopRangingBeacons(in: self.beaconRegions[currentBeaconIndex!])
+                    }
+                }
+            }
         default:
             print("Unknown")
         }
@@ -66,11 +102,11 @@ class MainPageTableViewController: UITableViewController, CLLocationManagerDeleg
         if CLLocationManager.authorizationStatus() != .authorizedAlways {
             locationManager.requestAlwaysAuthorization()
         } else {
-            for beacon in mainPageContentVM.allBeacons{
-                print(mainPageContentVM.allBeacons)
+            for beacon in mainPageContentVM.allBeacons {
                 guard let beaconUUID = UUID(uuidString: beacon.uuid) else { return }
                 let beaconRegion = CLBeaconRegion(proximityUUID: beaconUUID, major: CLBeaconMajorValue(beacon.major), minor: CLBeaconMinorValue(beacon.minor), identifier: beaconUUID.uuidString)
-                locationManager.startMonitoring(for: beaconRegion)
+                beaconRegions.append(beaconRegion)
+                //locationManager.startMonitoring(for: beaconRegion)
                 locationManager.startRangingBeacons(in: beaconRegion)
             }
         }
