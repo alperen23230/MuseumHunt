@@ -43,4 +43,5 @@ final class ContentViewModel {
     func playVideo(){
         videoPlayer.play()
     }
+    
 }

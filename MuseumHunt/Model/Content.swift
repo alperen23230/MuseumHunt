@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Content {
+struct Content: Codable {
     var mainImageURL: String
     var title: String
     var videoURL: String?

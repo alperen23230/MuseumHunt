@@ -13,6 +13,8 @@ enum EndPoint: String {
     case getAllArtifacts = "/api/artifact/getallartifacts"
     case getLocation = "/api/location/getalllocation"
     case getMainPageContent = "/api/content/gethomecontents"
+    case getAllBeacons = "/api/beacon/getallbeacons"
+    case getContentWithBeacon = "/api/relation/getcontentwithbeacon"
 }
 
 enum HTTPMethod: String {
@@ -86,5 +88,47 @@ struct APIClient {
             }
             }.resume()
     }
-    
+    //GET Request
+    mutating func getAllBeacons(completion: @escaping(Result<[Beacon], Error>)->()){
+        urlComponent.path = EndPoint.getAllBeacons.rawValue
+        
+        guard let url = urlComponent.url else { return }
+        
+        URLSession.shared.dataTask(with: url){(data, response, error) in
+            if error != nil{
+                completion(.failure(error!))
+                print(error!)
+            } else{
+                guard let _ = response as? HTTPURLResponse, let jsonData = data  else { return }
+                let beaconData = try? JSONDecoder().decode([Beacon].self, from: jsonData)
+                guard let allBeacons = beaconData else { return }
+                completion(.success(allBeacons))
+            }
+            }.resume()
+    }
+    //POST Request
+    mutating func getContentWithBeacon(beacon: Beacon, completion: @escaping(Result<Content, Error>)->()){
+        
+        urlComponent.path = EndPoint.getContentWithBeacon.rawValue
+        
+        guard let url = urlComponent.url else { return }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = try? JSONEncoder().encode(beacon)
+        
+        URLSession.shared.dataTask(with: urlRequest){(data, response, error) in
+            if error != nil{
+                completion(.failure(error!))
+                print(error!)
+            } else{
+                guard let httpResponse = response as? HTTPURLResponse, let jsonData = data  else { return }
+                print(httpResponse.statusCode)
+                let contentData = try? JSONDecoder().decode(Content.self, from: jsonData)
+                guard let content = contentData else { return }
+                completion(.success(content))
+            }
+            }.resume()
+    }
 }

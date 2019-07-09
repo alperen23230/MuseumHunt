@@ -52,6 +52,7 @@ class ContentViewController: UIViewController {
         
         setupContent()
     }
+    
 
     func setupContent(){
         guard let content = content else { return }
@@ -141,7 +142,7 @@ class ContentViewController: UIViewController {
         
         slideImageView.slideshowInterval = 5.0
         slideImageView.pageIndicatorPosition = .init(horizontal: .center, vertical: .under)
-        slideImageView.contentScaleMode = UIView.ContentMode.scaleAspectFill
+        slideImageView.contentScaleMode = UIView.ContentMode.scaleToFill
         
         let pageControl = UIPageControl()
         pageControl.currentPageIndicatorTintColor = UIColor.lightGray

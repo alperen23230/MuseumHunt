@@ -8,12 +8,15 @@
 
 import Foundation
 import RealmSwift
+import CoreLocation
 
 final class MainPageContentViewModel {
     
     let realm = try! Realm()
     
     var mainPageContentsCache : Results<MainPageContentCache>?
+    
+    var allBeacons = [Beacon]()
     
     func saveMainPageContentCache(content: MainPageContentCache){
         do{

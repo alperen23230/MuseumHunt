@@ -8,19 +8,77 @@
 
 import UIKit
 import KRProgressHUD
+import CoreLocation
 
-class MainPageTableViewController: UITableViewController {
+class MainPageTableViewController: UITableViewController, CLLocationManagerDelegate {
     
     var mainPageContentVM: MainPageContentViewModel!
+    
+    let locationManager = CLLocationManager()
+    
+    var currentContent: Content!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mainPageContentVM = MainPageContentViewModel()
         
+        locationManager.delegate = self
+        locationManager.requestAlwaysAuthorization()
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        if beacons.count > 0 {
+            for beacon in beacons {
+                getContentWithBeacon(beaconRegion: beacon)
+            }
+        } else {
+            print("unknown")
+        }
+    }
+
+    func getContentWithBeacon(beaconRegion: CLBeacon){
+        switch beaconRegion.proximity {
+        case .far:
+            print("far")
+        case .near:
+            let beacon = Beacon(name: nil, uuid: beaconRegion.proximityUUID.uuidString, major: Int(truncating: beaconRegion.major), minor: Int(truncating: beaconRegion.minor), proximity: "Near")
+            APIClient.sharedInstance.getContentWithBeacon(beacon: beacon) { (result) in
+                switch result{
+                case .failure(let error):
+                    print(error)
+                case .success(let content):
+                    DispatchQueue.main.async {
+                        self.currentContent = Content(mainImageURL: content.mainImageURL, title: content.title, videoURL: content.videoURL, slideImageURL: content.slideImageURL, audioURL: content.audioURL, text: content.text)
+                        self.performSegue(withIdentifier: "goToContent", sender: nil)
+                    }
+                }
+            }
+        case .immediate:
+            print("immediate")
+        default:
+            print("Unknown")
+        }
+    }
+    
+    func startBeaconScan(){
+        if CLLocationManager.authorizationStatus() != .authorizedAlways {
+            locationManager.requestAlwaysAuthorization()
+        } else {
+            for beacon in mainPageContentVM.allBeacons{
+                print(mainPageContentVM.allBeacons)
+                guard let beaconUUID = UUID(uuidString: beacon.uuid) else { return }
+                let beaconRegion = CLBeaconRegion(proximityUUID: beaconUUID, major: CLBeaconMajorValue(beacon.major), minor: CLBeaconMinorValue(beacon.minor), identifier: beaconUUID.uuidString)
+                locationManager.startMonitoring(for: beaconRegion)
+                locationManager.startRangingBeacons(in: beaconRegion)
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        fetchAllBeacons()
+        
         //This user default for
         let isFetched = UserDefaults.standard.bool(forKey: "isFetchedMainPage")
         if launch == "FirstTime" {
@@ -35,6 +93,21 @@ class MainPageTableViewController: UITableViewController {
             //Realm Read Data
             mainPageContentVM.loadMainPageContents()
             tableView.reloadData()
+        }
+    }
+    
+    
+    func fetchAllBeacons(){
+        APIClient.sharedInstance.getAllBeacons { (result) in
+            switch result{
+            case .failure(let error):
+                print(error.localizedDescription)
+            case .success(let beacons):
+                DispatchQueue.main.async {
+                    self.mainPageContentVM.allBeacons.append(contentsOf: beacons)
+                    self.startBeaconScan()
+                }
+            }
         }
     }
     
@@ -101,6 +174,8 @@ extension MainPageTableViewController {
                 guard let content = mainPageContent else { return }
                 
                 destinationVC.content = Content(mainImageURL: content.mainImageURL, title: content.title, videoURL: content.videoURL, slideImageURL: content.slideImageURL, audioURL: content.audioURL, text: content.text)
+            } else {
+                destinationVC.content = currentContent
             }
         }
     }
