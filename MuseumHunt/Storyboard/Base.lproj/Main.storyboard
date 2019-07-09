@@ -466,9 +466,11 @@
                         <outlet property="audioLabel" destination="Pcn-KA-OO6" id="R2O-H8-i6m"/>
                         <outlet property="audioPlayStopButton" destination="3H6-jQ-Sp0" id="D2b-4o-zq5"/>
                         <outlet property="audioRestartButton" destination="kOs-s3-AVn" id="2bV-cd-LSr"/>
+                        <outlet property="imageThumbnailHeight" destination="g8o-Fb-unE" id="rjM-J3-AAv"/>
                         <outlet property="slideImageHeight" destination="Lzd-s8-F1j" id="9YU-1p-1cN"/>
                         <outlet property="slideImageView" destination="e9m-zn-DdL" id="la5-kW-3N8"/>
                         <outlet property="textView" destination="JPV-Y6-A9C" id="pUE-JI-bQe"/>
+                        <outlet property="textViewHeight" destination="G6k-qX-xte" id="8ZD-er-HSO"/>
                         <outlet property="videoPlayImage" destination="EMZ-QR-EKC" id="SYN-xQ-7Eg"/>
                         <outlet property="videoThumbnailImage" destination="T0d-sz-CHx" id="HIq-Ya-tAr"/>
                     </connections>

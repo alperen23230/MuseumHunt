@@ -8,6 +8,8 @@
 
 import UIKit
 import ImageSlideshow
+import SDWebImage
+import AVKit
 
 class ContentViewController: UIViewController {
 
@@ -24,6 +26,7 @@ class ContentViewController: UIViewController {
     
     @IBOutlet weak var audioRestartButton: CustomButton!
     
+    @IBOutlet weak var textViewHeight: NSLayoutConstraint!
     
     @IBOutlet weak var videoPlayImage: UIImageView!
     
@@ -31,11 +34,16 @@ class ContentViewController: UIViewController {
     
     @IBOutlet weak var slideImageHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var imageThumbnailHeight: NSLayoutConstraint!
+    
+    
     let urlBase = "https://testblobkayten.blob.core.windows.net/blobcontainer"
     
     var isPlayAudio = false
     
     var contentVM: ContentViewModel!
+    
+    var videoVC = AVPlayerViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,12 +65,16 @@ class ContentViewController: UIViewController {
             slideImageView.layoutIfNeeded()
             slideImageView.isHidden = true
         }
+        
         if let text = content.text {
             textView.text = text
         } else {
+            textViewHeight.constant = 0
+            textView.layoutIfNeeded()
             textView.text = ""
             textView.isHidden = true
         }
+        
         if let audioURL = content.audioURL {
             //prepare audio
             contentVM.prepareAudio(with: urlBase + audioURL)
@@ -71,14 +83,36 @@ class ContentViewController: UIViewController {
             audioPlayStopButton.isHidden = true
             audioRestartButton.isHidden = true
         }
-        if let videoURL = content.videoURL, let slideImageURL = content.slideImageURL {
+        
+        if let videoURL = content.videoURL {
             //prepare video
+            guard let url = URL(string: urlBase + content.mainImageURL) else { return }
+            
+            videoThumbnailImage.sd_setImage(with: url)
+            
+            let videoPlayer = contentVM.prepareVideo(with: urlBase + videoURL)
+            videoVC.player = videoPlayer
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(openVideo))
+            tap.numberOfTapsRequired = 1
+            
+            videoPlayImage.isUserInteractionEnabled = true
+            
+            videoPlayImage.addGestureRecognizer(tap)
+            
         } else {
+            imageThumbnailHeight.constant = 0
+            videoPlayImage.layoutIfNeeded()
             videoPlayImage.isHidden = true
             videoThumbnailImage.isHidden = true
         }
     }
     
+    @objc func openVideo(){
+        present(videoVC,animated: true){
+            self.contentVM.playVideo()
+        }
+    }
     
     @IBAction func audioPlayStopClicked(_ sender: Any) {
         if isPlayAudio{

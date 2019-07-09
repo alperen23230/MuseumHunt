@@ -94,15 +94,14 @@ extension MainPageTableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! ContentViewController
-        
-        if let indexPath = tableView.indexPathForSelectedRow{
-            let mainPageContent = mainPageContentVM.mainPageContentsCache?[indexPath.row]
-            
-            guard let content = mainPageContent else { return }
-            
-            destinationVC.content = Content(title: content.title, videoURL: content.videoURL, slideImageURL: content.slideImageURL, audioURL: content.audioURL, text: content.text)
+        if let destinationVC = segue.destination as? ContentViewController{
+            if let indexPath = tableView.indexPathForSelectedRow{
+                let mainPageContent = mainPageContentVM.mainPageContentsCache?[indexPath.row]
+                
+                guard let content = mainPageContent else { return }
+                
+                destinationVC.content = Content(mainImageURL: content.mainImageURL, title: content.title, videoURL: content.videoURL, slideImageURL: content.slideImageURL, audioURL: content.audioURL, text: content.text)
+            }
         }
-
     }
 }

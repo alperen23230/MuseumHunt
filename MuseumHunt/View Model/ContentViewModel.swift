@@ -8,10 +8,12 @@
 
 import Foundation
 import AVFoundation
+import AVKit
 
 final class ContentViewModel {
     
     var audioPlayer = AVPlayer()
+    var videoPlayer = AVPlayer()
 
     func prepareAudio(with audioUrl: String){
         guard let url = URL(string: audioUrl) else { return }
@@ -30,5 +32,15 @@ final class ContentViewModel {
     func restartAudio(){
         audioPlayer.seek(to: .zero)
         audioPlayer.play()
+    }
+    func prepareVideo(with videoUrl: String) -> AVPlayer{
+        guard let url = URL(string: videoUrl) else { return AVPlayer() }
+        
+        videoPlayer = AVPlayer(url: url)
+        
+        return videoPlayer
+    }
+    func playVideo(){
+        videoPlayer.play()
     }
 }

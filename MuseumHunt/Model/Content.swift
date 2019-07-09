@@ -9,6 +9,7 @@
 import Foundation
 
 struct Content {
+    var mainImageURL: String
     var title: String
     var videoURL: String?
     var slideImageURL: String?
