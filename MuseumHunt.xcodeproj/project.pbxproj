@@ -30,6 +30,8 @@
 		848FC3E722CF683C00BEEEE9 /* ArtifactViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848FC3E622CF683C00BEEEE9 /* ArtifactViewModelTests.swift */; };
 		848FC3E922CF6DE500BEEEE9 /* RealmProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848FC3E822CF6DE500BEEEE9 /* RealmProvider.swift */; };
 		848FC3EB22CF90CE00BEEEE9 /* MainPageContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848FC3EA22CF90CE00BEEEE9 /* MainPageContentTableViewCell.swift */; };
+		84919A6A22D6104B005423C0 /* ContentModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84919A6922D6104B005423C0 /* ContentModelTests.swift */; };
+		84919A6C22D61C14005423C0 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84919A6B22D61C14005423C0 /* LocationViewModel.swift */; };
 		84B746B422CDD3F0008A7D29 /* ArtifactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B746B322CDD3F0008A7D29 /* ArtifactTableViewCell.swift */; };
 		84B746B822CE0BDC008A7D29 /* ArtifactCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B746B722CE0BDC008A7D29 /* ArtifactCache.swift */; };
 		84E0540322D3539B00ED7A87 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0540222D3539B00ED7A87 /* ContentViewController.swift */; };
@@ -81,6 +83,8 @@
 		848FC3E622CF683C00BEEEE9 /* ArtifactViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifactViewModelTests.swift; sourceTree = "<group>"; };
 		848FC3E822CF6DE500BEEEE9 /* RealmProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmProvider.swift; sourceTree = "<group>"; };
 		848FC3EA22CF90CE00BEEEE9 /* MainPageContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageContentTableViewCell.swift; sourceTree = "<group>"; };
+		84919A6922D6104B005423C0 /* ContentModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModelTests.swift; sourceTree = "<group>"; };
+		84919A6B22D61C14005423C0 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		84B746B322CDD3F0008A7D29 /* ArtifactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifactTableViewCell.swift; sourceTree = "<group>"; };
 		84B746B722CE0BDC008A7D29 /* ArtifactCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifactCache.swift; sourceTree = "<group>"; };
 		84E0540222D3539B00ED7A87 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 				843ED11B22CA363B00146287 /* BeaconModelTests.swift */,
 				843ED12122CA4ABC00146287 /* APIClientTests.swift */,
 				848FC3E622CF683C00BEEEE9 /* ArtifactViewModelTests.swift */,
+				84919A6922D6104B005423C0 /* ContentModelTests.swift */,
 			);
 			path = MuseumHuntTests;
 			sourceTree = "<group>";
@@ -194,6 +199,7 @@
 				848FC3E422CF447000BEEEE9 /* SettingsViewModel.swift */,
 				84E0540422D3590D00ED7A87 /* ContentViewModel.swift */,
 				84E0540A22D371F700ED7A87 /* MainPageContentViewModel.swift */,
+				84919A6B22D61C14005423C0 /* LocationViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -490,6 +496,7 @@
 				84E0540922D36F8F00ED7A87 /* MainPageContent.swift in Sources */,
 				84E0540322D3539B00ED7A87 /* ContentViewController.swift in Sources */,
 				84B746B822CE0BDC008A7D29 /* ArtifactCache.swift in Sources */,
+				84919A6C22D61C14005423C0 /* LocationViewModel.swift in Sources */,
 				84E3445622D45D4300AC7F6C /* Content.swift in Sources */,
 				84133D8D22CCF4CF00CB1C3E /* ArtifactViewModel.swift in Sources */,
 				843ED12022CA473A00146287 /* APIClient.swift in Sources */,
@@ -514,6 +521,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				843ED11C22CA363B00146287 /* BeaconModelTests.swift in Sources */,
+				84919A6A22D6104B005423C0 /* ContentModelTests.swift in Sources */,
 				848FC3E722CF683C00BEEEE9 /* ArtifactViewModelTests.swift in Sources */,
 				843ED12222CA4ABC00146287 /* APIClientTests.swift in Sources */,
 			);

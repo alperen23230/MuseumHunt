@@ -91,7 +91,7 @@ class ContentViewController: UIViewController {
             
             videoThumbnailImage.layer.cornerRadius = 20
             
-            guard let url = URL(string: urlBase + content.mainImageURL) else { return }
+            guard let url = URL(string: urlBase + content.mainImageURL!) else { return }
             
             videoThumbnailImage.sd_setImage(with: url)
             

@@ -16,7 +16,7 @@ final class MainPageContentViewModel {
     
     var mainPageContentsCache : Results<MainPageContentCache>?
     
-    var allBeacons = [Beacon]()
+    static var allBeacons = [Beacon]()
     
     func saveMainPageContentCache(content: MainPageContentCache){
         do{

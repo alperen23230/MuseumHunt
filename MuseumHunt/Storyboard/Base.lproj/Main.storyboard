@@ -310,16 +310,10 @@
                             <outlet property="delegate" destination="bkV-xR-mN7" id="tXk-2W-cPV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Museum Hunt" id="5CR-QR-pee">
-                        <barButtonItem key="leftBarButtonItem" image="menuIcon" id="hel-qk-vMx">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <segue destination="D2t-Cq-qWi" kind="presentation" id="tLU-Jn-tSc"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Museum Hunt" id="5CR-QR-pee"/>
                     <connections>
                         <segue destination="Oye-FB-JTO" kind="show" identifier="goToContent" id="KRN-eI-TCJ"/>
+                        <segue destination="D2t-Cq-qWi" kind="presentation" identifier="goToMenu" id="TMT-Gs-jqM"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Qa-dj-6Pp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -505,7 +499,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="menuIcon" width="30" height="30"/>
         <image name="playImage" width="100" height="100"/>
     </resources>
 </document>
