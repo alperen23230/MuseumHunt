@@ -35,7 +35,6 @@ class MainPageTableViewController: UITableViewController, CLLocationManagerDeleg
     }
     
     @objc func menuClicked(){
-        print(beaconRegions)
         for beacon in beaconRegions {
             locationManager.stopRangingBeacons(in: beacon)
         }
@@ -141,7 +140,7 @@ class MainPageTableViewController: UITableViewController, CLLocationManagerDeleg
     }
     
     @objc func openBluetooth(alert: UIAlertAction){
-        let url = URL(string: "App-Prefs:root=Bluetooth") //for bluetooth setting
+        let url = URL(string: "App-Prefs:root=General&path=Bluetooth") //for bluetooth setting
         let app = UIApplication.shared
         app.open(url!, options: [:])
     }
