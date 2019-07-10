@@ -8,17 +8,22 @@
 
 import UIKit
 import RealmSwift
+import CoreBluetooth
 
 var launch = ""
+
+var currentBluetoothState = ""
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var manager: CBCentralManager!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
+        manager = CBCentralManager()
+        manager.delegate = self
         do{
             try Realm()
         }
@@ -36,6 +41,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
+    }
+}
+
+extension AppDelegate: CBCentralManagerDelegate {
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        switch central.state {
+        case .poweredOn:
+            print("Bluetooth On")
+            currentBluetoothState = "On"
+            break
+        case .poweredOff:
+            print("Bluetooth Off")
+            currentBluetoothState = "Off"
+            break
+        case .resetting:
+            break
+        case .unauthorized:
+            break
+        case .unsupported:
+            break
+        case .unknown:
+            break
+        default:
+            break
+        }
     }
 }
 

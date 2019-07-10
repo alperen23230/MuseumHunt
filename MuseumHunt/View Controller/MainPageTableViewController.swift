@@ -51,9 +51,12 @@ class MainPageTableViewController: UITableViewController, CLLocationManagerDeleg
                 case .success(let content):
                     DispatchQueue.main.async {
                         self.currentContent = Content(mainImageURL: content.mainImageURL, title: content.title, videoURL: content.videoURL, slideImageURL: content.slideImageURL, audioURL: content.audioURL, text: content.text)
-                        self.performSegue(withIdentifier: "goToContent", sender: nil)
+                        
                         let currentBeaconIndex = self.beaconRegions.firstIndex(of: CLBeaconRegion(proximityUUID: beaconRegion.proximityUUID, major: CLBeaconMajorValue(truncating: beaconRegion.major), minor: CLBeaconMinorValue(truncating: beaconRegion.minor), identifier: beaconRegion.proximityUUID.uuidString))
                         self.locationManager.stopRangingBeacons(in: self.beaconRegions[currentBeaconIndex!])
+                        
+                        self.performSegue(withIdentifier: "goToContent", sender: nil)
+                       
                     }
                 }
             }
@@ -67,11 +70,14 @@ class MainPageTableViewController: UITableViewController, CLLocationManagerDeleg
                 case .success(let content):
                     DispatchQueue.main.async {
                         self.currentContent = Content(mainImageURL: content.mainImageURL, title: content.title, videoURL: content.videoURL, slideImageURL: content.slideImageURL, audioURL: content.audioURL, text: content.text)
-                        self.performSegue(withIdentifier: "goToContent", sender: nil)
                         
                         let currentBeaconIndex = self.beaconRegions.firstIndex(of: CLBeaconRegion(proximityUUID: beaconRegion.proximityUUID, major: CLBeaconMajorValue(truncating: beaconRegion.major), minor: CLBeaconMinorValue(truncating: beaconRegion.minor), identifier: beaconRegion.proximityUUID.uuidString))
                         
                         self.locationManager.stopRangingBeacons(in: self.beaconRegions[currentBeaconIndex!])
+                        
+                        self.performSegue(withIdentifier: "goToContent", sender: nil)
+                        
+                       
                     }
                 }
             }
@@ -86,10 +92,11 @@ class MainPageTableViewController: UITableViewController, CLLocationManagerDeleg
                     DispatchQueue.main.async {
                         self.currentContent = Content(mainImageURL: content.mainImageURL, title: content.title, videoURL: content.videoURL, slideImageURL: content.slideImageURL, audioURL: content.audioURL, text: content.text)
                         
-                        self.performSegue(withIdentifier: "goToContent", sender: nil)
-                        
                         let currentBeaconIndex = self.beaconRegions.firstIndex(of: CLBeaconRegion(proximityUUID: beaconRegion.proximityUUID, major: CLBeaconMajorValue(truncating: beaconRegion.major), minor: CLBeaconMinorValue(truncating: beaconRegion.minor), identifier: beaconRegion.proximityUUID.uuidString))
                         self.locationManager.stopRangingBeacons(in: self.beaconRegions[currentBeaconIndex!])
+                        
+                        self.performSegue(withIdentifier: "goToContent", sender: nil)
+                        
                     }
                 }
             }
@@ -112,10 +119,34 @@ class MainPageTableViewController: UITableViewController, CLLocationManagerDeleg
         }
     }
     
+    @objc func openBluetooth(alert: UIAlertAction){
+        let url = URL(string: "App-Prefs:root=Bluetooth") //for bluetooth setting
+        let app = UIApplication.shared
+        app.open(url!, options: [:])
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
-        fetchAllBeacons()
+        let isBluetoothOpen = UserDefaults.standard.bool(forKey: "isBluetoothOpen")
+        if isBluetoothOpen {
+            if currentBluetoothState == "Off" {
+                let alert = UIAlertController(title: "Settings",
+                                              message: "Please open your bluetooth for use this feature",
+                                              preferredStyle: UIAlertController.Style.alert)
+                
+                alert.addAction(UIAlertAction(title: "Open Settings",
+                                              style: UIAlertAction.Style.default,
+                                              handler: openBluetooth))
+                alert.addAction(UIAlertAction(title: "Cancel",
+                                              style: UIAlertAction.Style.default,
+                                              handler: nil))
+                self.present(alert, animated: true)
+            } else {
+                print("fetching")
+                fetchAllBeacons()
+            }
+        }
         
-        //This user default for
+        //This user default for is fetched main page contents at least once
         let isFetched = UserDefaults.standard.bool(forKey: "isFetchedMainPage")
         if launch == "FirstTime" {
             if !isFetched {

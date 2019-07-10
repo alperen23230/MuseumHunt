@@ -66,7 +66,7 @@ struct APIClient {
                 guard let _ = response as? HTTPURLResponse, let jsonData = data  else { return }
                 let locationData = try? JSONDecoder().decode([Location].self, from: jsonData)
                 guard let location = locationData else { return }
-                completion(.success(location[1]))
+                completion(.success(location[0]))
             }
         }.resume()
     }

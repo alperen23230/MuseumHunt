@@ -60,6 +60,7 @@ class ContentViewController: UIViewController {
         
         if let slideImageURL = content.slideImageURL {
             //setup images
+            slideImageView.layer.cornerRadius = 15
             setupImageSlide(imageURL: urlBase + slideImageURL)
         } else {
             slideImageHeight.constant = 0
@@ -87,6 +88,9 @@ class ContentViewController: UIViewController {
         
         if let videoURL = content.videoURL {
             //prepare video
+            
+            videoThumbnailImage.layer.cornerRadius = 20
+            
             guard let url = URL(string: urlBase + content.mainImageURL) else { return }
             
             videoThumbnailImage.sd_setImage(with: url)

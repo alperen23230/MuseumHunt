@@ -8,15 +8,39 @@
 
 import UIKit
 import Eureka
+import CoreBluetooth
 
 class SettingsViewController: FormViewController {
     
     var settingsVM: SettingsViewModel!
-
+    
+    var isBluetoothOpen = false
+    
+    var bluetoothState = "Disable"
+    
+    var manager:CBCentralManager!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
+        
+        isBluetoothOpen = UserDefaults.standard.bool(forKey: "isBluetoothOpen")
+        if isBluetoothOpen {
+            bluetoothState = "Enable"
+        } else {
+            bluetoothState = "Disable"
+        }
         settingsVM = SettingsViewModel()
         setupForm()
+    }
+    
+
+    
+    @objc func openBluetooth(alert: UIAlertAction){
+        let url = URL(string: "App-Prefs:root=Bluetooth") //for bluetooth setting
+        let app = UIApplication.shared
+        app.open(url!, options: [:])
     }
     
     //This function setup the form of the Settings UI
@@ -35,13 +59,36 @@ class SettingsViewController: FormViewController {
             }
             <<< PickerInputRow<String>(){row in
                 row.title = "Bluetooth Low Energy"
-                row.value = "Enable"
+                row.value = bluetoothState
                 row.options = ["Enable", "Disable"]
                 row.onChange({ row in
                     //update the state
+                    if row.value == "Enable" {
+                        UserDefaults.standard.set(true, forKey: "isBluetoothOpen")
+                        if currentBluetoothState == "Off" {
+                            let alert = UIAlertController(title: "Settings",
+                                                          message: "Please open your bluetooth for use this feature",
+                                                          preferredStyle: UIAlertController.Style.alert)
+                            
+                            alert.addAction(UIAlertAction(title: "Open Settings",
+                                                          style: UIAlertAction.Style.default,
+                                                          handler: self.openBluetooth))
+                            alert.addAction(UIAlertAction(title: "Cancel",
+                                                          style: UIAlertAction.Style.default,
+                                                          handler: nil))
+                            self.present(alert, animated: true)
+                        }
+                    } else {
+                        UserDefaults.standard.set(false, forKey: "isBluetoothOpen")
+                    }
                 })
                 row.cellUpdate({ (cell, row) in
                     //for change text color
+                    if row.value == "Enable" {
+                        cell.textLabel?.textColor = .green
+                    } else {
+                        cell.textLabel?.textColor = .red
+                    }
                 })
         }
             
