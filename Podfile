@@ -5,13 +5,13 @@ target 'MuseumHunt' do
   use_frameworks!
 
   # Pods for MuseumHunt
-    pod 'SideMenu'
     pod 'ImageSlideshow'
     pod 'SDWebImage'
     pod 'Eureka'
     pod 'KRProgressHUD'
     pod 'RealmSwift'
     pod 'ImageSlideshow/SDWebImage'
+    pod 'ChameleonFramework/Swift'
 
   target 'MuseumHuntTests' do
     inherit! :search_paths

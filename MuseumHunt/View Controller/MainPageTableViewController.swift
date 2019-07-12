@@ -31,7 +31,6 @@ class MainPageTableViewController: UITableViewController, CLLocationManagerDeleg
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-        
     }
     
     @objc func menuClicked(){
@@ -42,7 +41,8 @@ class MainPageTableViewController: UITableViewController, CLLocationManagerDeleg
     }
 
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        if beacons.count > 0 {
+        let knownBeacons = beacons.filter(){ $0.proximity != .unknown }
+        if knownBeacons.count > 0 {
                 getContentWithBeacon(beaconRegion: beacons.first!)
         } else {
             print("unknown")

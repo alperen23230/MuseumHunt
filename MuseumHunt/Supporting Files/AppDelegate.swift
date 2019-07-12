@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import CoreBluetooth
+import ChameleonFramework
 
 var launch = ""
 
@@ -22,6 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var manager: CBCentralManager!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        UINavigationBar.appearance().barTintColor = UIColor.flatMagenta()
+        
+        UITabBar.appearance().tintColor = UIColor.flatMagenta()
+        
+        
         manager = CBCentralManager()
         manager.delegate = self
         do{

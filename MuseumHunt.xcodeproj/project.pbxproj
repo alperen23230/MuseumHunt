@@ -33,6 +33,8 @@
 		84919A6A22D6104B005423C0 /* ContentModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84919A6922D6104B005423C0 /* ContentModelTests.swift */; };
 		84B746B422CDD3F0008A7D29 /* ArtifactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B746B322CDD3F0008A7D29 /* ArtifactTableViewCell.swift */; };
 		84B746B822CE0BDC008A7D29 /* ArtifactCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B746B722CE0BDC008A7D29 /* ArtifactCache.swift */; };
+		84CB681622D8675D0016EA96 /* ChooseLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CB681522D8675D0016EA96 /* ChooseLocationTableViewCell.swift */; };
+		84CB681822D86A0E0016EA96 /* ChooseLocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CB681722D86A0E0016EA96 /* ChooseLocationTableViewController.swift */; };
 		84E0540322D3539B00ED7A87 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0540222D3539B00ED7A87 /* ContentViewController.swift */; };
 		84E0540522D3590D00ED7A87 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0540422D3590D00ED7A87 /* ContentViewModel.swift */; };
 		84E0540722D35AA100ED7A87 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0540622D35AA100ED7A87 /* CustomButton.swift */; };
@@ -85,6 +87,8 @@
 		84919A6922D6104B005423C0 /* ContentModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModelTests.swift; sourceTree = "<group>"; };
 		84B746B322CDD3F0008A7D29 /* ArtifactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifactTableViewCell.swift; sourceTree = "<group>"; };
 		84B746B722CE0BDC008A7D29 /* ArtifactCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifactCache.swift; sourceTree = "<group>"; };
+		84CB681522D8675D0016EA96 /* ChooseLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLocationTableViewCell.swift; sourceTree = "<group>"; };
+		84CB681722D86A0E0016EA96 /* ChooseLocationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLocationTableViewController.swift; sourceTree = "<group>"; };
 		84E0540222D3539B00ED7A87 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		84E0540422D3590D00ED7A87 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		84E0540622D35AA100ED7A87 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
@@ -139,6 +143,7 @@
 		8479930922C63D6B0099D6D4 /* MuseumHunt */ = {
 			isa = PBXGroup;
 			children = (
+				84CB681922D87C090016EA96 /* Supporting Classes */,
 				84B746B222CDD3C5008A7D29 /* Custom Cells */,
 				8479933A22C65FF50099D6D4 /* Service */,
 				8479933322C654920099D6D4 /* Fonts */,
@@ -186,6 +191,7 @@
 				843ED11D22CA396300146287 /* ArtifactsTableViewController.swift */,
 				848FC3E022CF225D00BEEEE9 /* AboutViewController.swift */,
 				84E0540222D3539B00ED7A87 /* ContentViewController.swift */,
+				84CB681722D86A0E0016EA96 /* ChooseLocationTableViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -215,8 +221,6 @@
 				8479931622C63D720099D6D4 /* Info.plist */,
 				8479931122C63D720099D6D4 /* Assets.xcassets */,
 				8479930A22C63D6B0099D6D4 /* AppDelegate.swift */,
-				848FC3E822CF6DE500BEEEE9 /* RealmProvider.swift */,
-				84E0540622D35AA100ED7A87 /* CustomButton.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -243,8 +247,18 @@
 			children = (
 				84B746B322CDD3F0008A7D29 /* ArtifactTableViewCell.swift */,
 				848FC3EA22CF90CE00BEEEE9 /* MainPageContentTableViewCell.swift */,
+				84CB681522D8675D0016EA96 /* ChooseLocationTableViewCell.swift */,
 			);
 			path = "Custom Cells";
+			sourceTree = "<group>";
+		};
+		84CB681922D87C090016EA96 /* Supporting Classes */ = {
+			isa = PBXGroup;
+			children = (
+				848FC3E822CF6DE500BEEEE9 /* RealmProvider.swift */,
+				84E0540622D35AA100ED7A87 /* CustomButton.swift */,
+			);
+			path = "Supporting Classes";
 			sourceTree = "<group>";
 		};
 		B781EB17E6E1480CE5C1EE91 /* Pods */ = {
@@ -384,6 +398,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MuseumHunt/Pods-MuseumHunt-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework",
 				"${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework",
@@ -391,12 +406,12 @@
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageSlideshow.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRActivityIndicatorView.framework",
@@ -404,7 +419,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SideMenu.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -497,6 +511,7 @@
 				84133D8D22CCF4CF00CB1C3E /* ArtifactViewModel.swift in Sources */,
 				843ED12022CA473A00146287 /* APIClient.swift in Sources */,
 				84B746B422CDD3F0008A7D29 /* ArtifactTableViewCell.swift in Sources */,
+				84CB681622D8675D0016EA96 /* ChooseLocationTableViewCell.swift in Sources */,
 				843ED11E22CA396300146287 /* ArtifactsTableViewController.swift in Sources */,
 				848FC3E322CF289000BEEEE9 /* Location.swift in Sources */,
 				848FC3E122CF225D00BEEEE9 /* AboutViewController.swift in Sources */,
@@ -506,6 +521,7 @@
 				843ED11822CA1FEB00146287 /* SettingsViewController.swift in Sources */,
 				84E0540522D3590D00ED7A87 /* ContentViewModel.swift in Sources */,
 				84133D8B22CCF34200CB1C3E /* Artifact.swift in Sources */,
+				84CB681822D86A0E0016EA96 /* ChooseLocationTableViewController.swift in Sources */,
 				848FC3E522CF447000BEEEE9 /* SettingsViewModel.swift in Sources */,
 				84E0540B22D371F700ED7A87 /* MainPageContentViewModel.swift in Sources */,
 				848FC3E922CF6DE500BEEEE9 /* RealmProvider.swift in Sources */,
