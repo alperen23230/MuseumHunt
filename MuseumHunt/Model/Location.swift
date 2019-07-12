@@ -9,7 +9,11 @@
 import Foundation
 
 struct Location: Codable {
+    var id: String
     var name: String
     var latitude: String
     var longitude: String
+    var photoURL: String
+    var distance: Int?
+
 }

@@ -28,19 +28,19 @@ class AboutViewController: UIViewController {
         DispatchQueue.main.async {
             KRProgressHUD.show()
         }
-        APIClient.sharedInstance.getLocation { (result) in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let location):
-                //And pass location to showOnMap function for showing location on the map
-                self.showOnMap(with: location)
-                DispatchQueue.main.async {
-                    self.museumNameLabel.text = location.name
-                    KRProgressHUD.dismiss()
-                }
-            }
-        }
+//        APIClient.sharedInstance.getLocation { (result) in
+//            switch result {
+//            case .failure(let error):
+//                print(error)
+//            case .success(let location):
+//                //And pass location to showOnMap function for showing location on the map
+//                self.showOnMap(with: location)
+//                DispatchQueue.main.async {
+//                    self.museumNameLabel.text = location.name
+//                    KRProgressHUD.dismiss()
+//                }
+//            }
+//        }
     }
     
     func showOnMap(with location: Location){

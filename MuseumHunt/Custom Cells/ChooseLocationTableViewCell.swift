@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ChooseLocationTableViewCell: UITableViewCell {
 
@@ -30,5 +31,12 @@ class ChooseLocationTableViewCell: UITableViewCell {
         locationImageView.clipsToBounds = true
     }
 
+    func setLocationCell(location: Location){
+        let urlBase = "https://testblobkayten.blob.core.windows.net/blobcontainer"
+        guard let url = URL(string: urlBase + location.photoURL) else { return }
+        locationImageView.sd_setImage(with: url)
+        locationNameLabel.text = location.name
+        locationDistanceLabel.text = "Distance: \(location.distance.map(){ String($0) } ?? "Waiting for your location") Kilometer"
+    }
 
 }

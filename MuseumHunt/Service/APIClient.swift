@@ -11,7 +11,7 @@ import UIKit
 
 enum EndPoint: String {
     case getAllArtifacts = "/api/artifact/getallartifacts"
-    case getLocation = "/api/location/getalllocation"
+    case getAllLocation = "/api/location/getallLocation"
     case getMainPageContent = "/api/content/gethomecontents"
     case getAllBeacons = "/api/beacon/getallbeacons"
     case getContentWithBeacon = "/api/relation/getcontentwithbeacon"
@@ -53,22 +53,30 @@ struct APIClient {
         }.resume()
     }
     //GET Request
-    mutating func getLocation(completion: @escaping(Result<Location, Error>)->()){
-        urlComponent.path = EndPoint.getLocation.rawValue
+    mutating func getAllLocation(completion: @escaping(Result<[Location], Error>)->()){
+        urlComponent.path = EndPoint.getAllLocation.rawValue
         
         guard let url = urlComponent.url else { return }
         
-        URLSession.shared.dataTask(with: url){(data, response, error) in
+        let project = Project()
+ 
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = HTTPMethod.post.rawValue
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = try? JSONEncoder().encode(project)
+        
+        URLSession.shared.dataTask(with: urlRequest){(data, response, error) in
             if error != nil{
                 completion(.failure(error!))
                 print(error!)
             } else{
-                guard let _ = response as? HTTPURLResponse, let jsonData = data  else { return }
+                guard let httpResponse = response as? HTTPURLResponse, let jsonData = data  else { return }
+                print(httpResponse.statusCode)
                 let locationData = try? JSONDecoder().decode([Location].self, from: jsonData)
-                guard let location = locationData else { return }
-                completion(.success(location[0]))
+                guard let locations = locationData else { return }
+                    completion(.success(locations))
             }
-        }.resume()
+            }.resume()
     }
     //GET Request
     mutating func getMainPageContent(completion: @escaping(Result<[MainPageContent], Error>)->()){
@@ -114,7 +122,7 @@ struct APIClient {
         guard let url = urlComponent.url else { return }
         
         var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
+        urlRequest.httpMethod = HTTPMethod.post.rawValue
         urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.httpBody = try? JSONEncoder().encode(beacon)
         
