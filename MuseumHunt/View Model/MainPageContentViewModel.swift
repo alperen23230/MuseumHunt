@@ -31,5 +31,4 @@ final class MainPageContentViewModel {
     func loadMainPageContents(){
         mainPageContentsCache = realm.objects(MainPageContentCache.self)
     }
-    
 }

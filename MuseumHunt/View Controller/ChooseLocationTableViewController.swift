@@ -32,7 +32,7 @@ class ChooseLocationTableViewController: UITableViewController, CLLocationManage
 
     func fetchAllLocations(){
         DispatchQueue.main.async {
-            KRProgressHUD.show(withMessage: "Please wait available locations loading")
+            KRProgressHUD.show(withMessage: "Please wait available museums loading")
         }
         APIClient.sharedInstance.getAllLocation { (result) in
             switch result{
