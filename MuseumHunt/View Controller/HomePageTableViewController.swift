@@ -8,6 +8,7 @@
 
 import UIKit
 import KRProgressHUD
+import DGElasticPullToRefresh
 
 class HomePageTableViewController: UITableViewController {
 
@@ -18,6 +19,26 @@ class HomePageTableViewController: UITableViewController {
         super.viewDidLoad()
         
         mainPageVM = MainPageContentViewModel()
+        
+        setupPullToRefresh()
+        
+    }
+    
+    func setupPullToRefresh(){
+        navigationController?.navigationBar.isTranslucent = false
+        
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.flatYellow()
+        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            // Add your logic here
+            // Do not forget to call dg_stopLoading() at the end
+            self?.mainPageVM.clearMainPageContentCache()
+            let locationID = UserDefaults.standard.string(forKey: "CurrentLocation")
+            self?.getHomePageContents(locationID: locationID!)
+            self?.tableView.dg_stopLoading()
+            }, loadingView: loadingView)
+        tableView.dg_setPullToRefreshFillColor(UIColor.flatMagenta())
+        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -33,12 +54,12 @@ class HomePageTableViewController: UITableViewController {
                 tableView.reloadData()
             }
         } else {
-            let changeState = UserDefaults.standard.bool(forKey: "isChange")
+            let changeState = UserDefaults.standard.bool(forKey: "isChangeLocationForHome")
             if changeState {
                 mainPageVM.clearMainPageContentCache()
                 let locationID = UserDefaults.standard.string(forKey: "CurrentLocation")
                 getHomePageContents(locationID: locationID!)
-                UserDefaults.standard.set(false, forKey: "isChange")
+                UserDefaults.standard.set(false, forKey: "isChangeLocationForHome")
             } else {
                 //Realm Read Data
                 mainPageVM.loadMainPageContents()
@@ -50,7 +71,7 @@ class HomePageTableViewController: UITableViewController {
     
     func getHomePageContents(locationID: String){
         DispatchQueue.main.async {
-            KRProgressHUD.show(withMessage: "Please wait getting your contents")
+            KRProgressHUD.show(withMessage: "Please wait for fetching contents")
         }
         let locationJSONModel = LocationJSONModel(id: locationID)
         APIClient.sharedInstance.getMainPageContent(location: locationJSONModel) { (result) in
@@ -78,6 +99,9 @@ class HomePageTableViewController: UITableViewController {
             }
         }
     }
+    deinit {
+        tableView.dg_removePullToRefresh()
+    }
 
 }
 
@@ -100,7 +124,22 @@ extension HomePageTableViewController {
         cell.setHomePageContent(content: content)
         
         return cell
-        
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToContent", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? ContentViewController {
+            if let indexPath = tableView.indexPathForSelectedRow {
+                let mainPageContent = mainPageVM.mainPageContentsCache?[indexPath.row]
+                
+                guard let content = mainPageContent else { return }
+                
+                destinationVC.content = Content(mainImageURL: content.mainImageURL, title: content.title, videoURL: content.videoURL, slideImageURL: content.slideImageURL, audioURL: content.audioURL, text: content.text)
+            }
+        }
     }
     
 }

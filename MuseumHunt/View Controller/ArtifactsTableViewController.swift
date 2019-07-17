@@ -8,6 +8,7 @@
 
 import UIKit
 import KRProgressHUD
+import DGElasticPullToRefresh
 
 class ArtifactsTableViewController: UITableViewController {
     
@@ -19,34 +20,62 @@ class ArtifactsTableViewController: UITableViewController {
         //We create instance of Artifact View Model
         artifactVM = ArtifactViewModel()
         
-        //This method calls for fetch artifact from cache
-        artifactVM.loadArtifacts()
-        tableView.reloadData()
+        setupPullToRefresh()
     }
     
+    
+    func setupPullToRefresh(){
+        navigationController?.navigationBar.isTranslucent = false
+        
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor.flatYellow()
+        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            // Add your logic here
+            // Do not forget to call dg_stopLoading() at the end
+            self?.artifactVM.clearArtifactCache()
+            let locationID = UserDefaults.standard.string(forKey: "CurrentLocation")
+            self?.fetchAndParseArtifacts(locationID: locationID!)
+            self?.tableView.dg_stopLoading()
+            }, loadingView: loadingView)
+        tableView.dg_setPullToRefreshFillColor(UIColor.flatMagenta())
+        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+    }
+    
+    
+    
     override func viewDidAppear(_ animated: Bool) {
-        //This user default for
-        let isFetched = UserDefaults.standard.bool(forKey: "isFetched")
+        //This user default for is fetched main page contents at least once
+        let isFetched = UserDefaults.standard.bool(forKey: "isFetchedArtifact")
         if launch == "FirstTime" {
             if !isFetched {
-                fetchAndParseArtifacts()
-                UserDefaults.standard.set(true, forKey: "isFetched")
+                let locationID = UserDefaults.standard.string(forKey: "CurrentLocation")
+                fetchAndParseArtifacts(locationID: locationID!)
+                UserDefaults.standard.set(true, forKey: "isFetchedMainPage")
             } else {
                 artifactVM.loadArtifacts()
                 tableView.reloadData()
             }
         } else {
-            //Realm Read Data
-            artifactVM.loadArtifacts()
-            tableView.reloadData()
+            let changeState = UserDefaults.standard.bool(forKey: "isChangeLocationForArtifact")
+            if changeState {
+                artifactVM.clearArtifactCache()
+                let locationID = UserDefaults.standard.string(forKey: "CurrentLocation")
+                fetchAndParseArtifacts(locationID: locationID!)
+                UserDefaults.standard.set(false, forKey: "isChangeLocationForArtifact")
+            } else {
+                //Realm Read Data
+                artifactVM.loadArtifacts()
+                tableView.reloadData()
+            }
         }
     }
     
-    func fetchAndParseArtifacts(){
+    func fetchAndParseArtifacts(locationID: String){
         DispatchQueue.main.async {
-            KRProgressHUD.show()
+            KRProgressHUD.show(withMessage: "Please wait for fetching artifacts")
         }
-        APIClient.sharedInstance.fetchAllArtfiacts { (result) in
+        let locationJSONModel = LocationJSONModel(id: locationID)
+        APIClient.sharedInstance.fetchAllArtfiacts(location: locationJSONModel) { (result) in
             switch result {
             case .failure(let error):
                 print(error)
@@ -67,6 +96,10 @@ class ArtifactsTableViewController: UITableViewController {
                 }
             }
         }
+    }
+    
+    deinit {
+        tableView.dg_removePullToRefresh()
     }
 }
 

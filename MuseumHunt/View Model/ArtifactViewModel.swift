@@ -38,4 +38,17 @@ final class ArtifactViewModel {
             print("Error: \(error)")
         }
     }
+    
+    func clearArtifactCache(){
+        do{
+            try self.realm.write {
+                loadArtifacts()
+                //And delete main page contents in cache
+                realm.delete(artifactsCache!)
+            }
+        }
+        catch{
+            print("Error: \(error)")
+        }
+    }
 }

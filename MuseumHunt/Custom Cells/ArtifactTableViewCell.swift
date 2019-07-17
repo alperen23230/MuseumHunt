@@ -30,7 +30,7 @@ class ArtifactTableViewCell: UITableViewCell {
     }
     
     func setArtifactCache(artifact: ArtifactCache){
-        let urlBase = "https://testblobkayten.blob.core.windows.net/blobcontainer"
+        let urlBase = "https://testblobkayten.blob.core.windows.net/blobcontainer/"
         guard let url = URL(string: urlBase + artifact.imageURL) else { return }
         artifactImageView.sd_setImage(with: url)
         artifactNameLabel.text = artifact.name

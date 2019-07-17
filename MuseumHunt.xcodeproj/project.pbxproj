@@ -49,6 +49,10 @@
 		84F951FF22DEF3CF00720941 /* HomePageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F951FE22DEF3CF00720941 /* HomePageTableViewController.swift */; };
 		84F9520122DEFCD300720941 /* LocationJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9520022DEFCD300720941 /* LocationJSONModel.swift */; };
 		84F9520322DF095400720941 /* PreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9520222DF095400720941 /* PreferencesTableViewController.swift */; };
+		84F9520922DF649400720941 /* CampaignTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9520822DF649400720941 /* CampaignTableViewCell.swift */; };
+		84F9520B22DF657700720941 /* CampaignTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9520A22DF657700720941 /* CampaignTableViewController.swift */; };
+		84F9520D22DF668000720941 /* CampaignViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9520C22DF668000720941 /* CampaignViewModel.swift */; };
+		84F9520F22DF66B100720941 /* Campaign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9520E22DF66B100720941 /* Campaign.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +114,10 @@
 		84F951FE22DEF3CF00720941 /* HomePageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageTableViewController.swift; sourceTree = "<group>"; };
 		84F9520022DEFCD300720941 /* LocationJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationJSONModel.swift; sourceTree = "<group>"; };
 		84F9520222DF095400720941 /* PreferencesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTableViewController.swift; sourceTree = "<group>"; };
+		84F9520822DF649400720941 /* CampaignTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignTableViewCell.swift; sourceTree = "<group>"; };
+		84F9520A22DF657700720941 /* CampaignTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignTableViewController.swift; sourceTree = "<group>"; };
+		84F9520C22DF668000720941 /* CampaignViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampaignViewModel.swift; sourceTree = "<group>"; };
+		84F9520E22DF66B100720941 /* Campaign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Campaign.swift; sourceTree = "<group>"; };
 		8C5D1EFFA3AE30FC493B6A79 /* Pods-MuseumHuntTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseumHuntTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MuseumHuntTests/Pods-MuseumHuntTests.debug.xcconfig"; sourceTree = "<group>"; };
 		963E428FE10DAC49042D9768 /* Pods-MuseumHuntTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseumHuntTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MuseumHuntTests/Pods-MuseumHuntTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -194,6 +202,7 @@
 				84E3445522D45D4300AC7F6C /* Content.swift */,
 				84CB681A22D8A7B30016EA96 /* Project.swift */,
 				84F9520022DEFCD300720941 /* LocationJSONModel.swift */,
+				84F9520E22DF66B100720941 /* Campaign.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,6 +220,7 @@
 				8406DEC022DE40E300343F05 /* CustomTabBarViewController.swift */,
 				84F951FE22DEF3CF00720941 /* HomePageTableViewController.swift */,
 				84F9520222DF095400720941 /* PreferencesTableViewController.swift */,
+				84F9520A22DF657700720941 /* CampaignTableViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -223,6 +233,7 @@
 				84E0540422D3590D00ED7A87 /* ContentViewModel.swift */,
 				84E0540A22D371F700ED7A87 /* MainPageContentViewModel.swift */,
 				84CB681C22D8B2FE0016EA96 /* ChooseLocationViewModel.swift */,
+				84F9520C22DF668000720941 /* CampaignViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -269,6 +280,7 @@
 				848FC3EA22CF90CE00BEEEE9 /* MainPageContentTableViewCell.swift */,
 				84CB681522D8675D0016EA96 /* ChooseLocationTableViewCell.swift */,
 				8406DEC222DE4A3300343F05 /* HomePageTableViewCell.swift */,
+				84F9520822DF649400720941 /* CampaignTableViewCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -529,14 +541,17 @@
 				84CB681D22D8B2FE0016EA96 /* ChooseLocationViewModel.swift in Sources */,
 				8479933922C65ED80099D6D4 /* MainPageTableViewController.swift in Sources */,
 				84E0540722D35AA100ED7A87 /* CustomButton.swift in Sources */,
+				84F9520922DF649400720941 /* CampaignTableViewCell.swift in Sources */,
 				848FC3EB22CF90CE00BEEEE9 /* MainPageContentTableViewCell.swift in Sources */,
 				84E0540922D36F8F00ED7A87 /* MainPageContent.swift in Sources */,
+				84F9520B22DF657700720941 /* CampaignTableViewController.swift in Sources */,
 				84CB681B22D8A7B30016EA96 /* Project.swift in Sources */,
 				84E0540322D3539B00ED7A87 /* ContentViewController.swift in Sources */,
 				84B746B822CE0BDC008A7D29 /* ArtifactCache.swift in Sources */,
 				84E3445622D45D4300AC7F6C /* Content.swift in Sources */,
 				84133D8D22CCF4CF00CB1C3E /* ArtifactViewModel.swift in Sources */,
 				84F951FF22DEF3CF00720941 /* HomePageTableViewController.swift in Sources */,
+				84F9520D22DF668000720941 /* CampaignViewModel.swift in Sources */,
 				843ED12022CA473A00146287 /* APIClient.swift in Sources */,
 				84B746B422CDD3F0008A7D29 /* ArtifactTableViewCell.swift in Sources */,
 				84CB681622D8675D0016EA96 /* ChooseLocationTableViewCell.swift in Sources */,
@@ -547,6 +562,7 @@
 				8479933222C652E60099D6D4 /* MenuTableViewController.swift in Sources */,
 				8406DEC122DE40E300343F05 /* CustomTabBarViewController.swift in Sources */,
 				843ED11A22CA321E00146287 /* Beacon.swift in Sources */,
+				84F9520F22DF66B100720941 /* Campaign.swift in Sources */,
 				8479930B22C63D6B0099D6D4 /* AppDelegate.swift in Sources */,
 				84F9520122DEFCD300720941 /* LocationJSONModel.swift in Sources */,
 				84F9520322DF095400720941 /* PreferencesTableViewController.swift in Sources */,

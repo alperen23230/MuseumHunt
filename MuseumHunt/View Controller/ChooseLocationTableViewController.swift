@@ -26,7 +26,7 @@ class ChooseLocationTableViewController: UITableViewController, CLLocationManage
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        let changeState = UserDefaults.standard.bool(forKey: "isChange")
+        let changeState = UserDefaults.standard.bool(forKey: "isChangeLocationForHome")
         if changeState {
             title = "Change Location"
             fetchAllLocations()

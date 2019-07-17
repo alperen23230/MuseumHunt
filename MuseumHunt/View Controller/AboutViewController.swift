@@ -21,26 +21,28 @@ class AboutViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         //We are fetching location from API
-        fetchLocation()
+        let locationID = UserDefaults.standard.string(forKey: "CurrentLocation")
+        fetchLocation(locationID: locationID!)
     }
     
-    func fetchLocation(){
+    func fetchLocation(locationID: String){
         DispatchQueue.main.async {
             KRProgressHUD.show()
         }
-//        APIClient.sharedInstance.getLocation { (result) in
-//            switch result {
-//            case .failure(let error):
-//                print(error)
-//            case .success(let location):
-//                //And pass location to showOnMap function for showing location on the map
-//                self.showOnMap(with: location)
-//                DispatchQueue.main.async {
-//                    self.museumNameLabel.text = location.name
-//                    KRProgressHUD.dismiss()
-//                }
-//            }
-//        }
+        let location = LocationJSONModel(id: locationID)
+        APIClient.sharedInstance.getLocation(location: location) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let location):
+                //And pass location to showOnMap function for showing location on the map
+                self.showOnMap(with: location)
+                DispatchQueue.main.async {
+                    self.museumNameLabel.text = location.name
+                    KRProgressHUD.dismiss()
+                }
+            }
+        }
     }
     
     func showOnMap(with location: Location){

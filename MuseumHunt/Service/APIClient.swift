@@ -15,6 +15,8 @@ enum EndPoint: String {
     case getMainPageContent = "/api/content/gethomecontents"
     case getAllBeacons = "/api/beacon/getallbeacons"
     case getContentWithBeacon = "/api/relation/getcontentwithbeacon"
+    case getLocation = "/api/location/getLocation"
+    case getCampaigns = "/api/content/getcampaigncontents"
 }
 
 enum HTTPMethod: String {
@@ -33,13 +35,18 @@ struct APIClient {
         self.urlComponent.host = "beamityapi20190703022513.azurewebsites.net"
     }
     
-    //GET Request
-    mutating func fetchAllArtfiacts(completion: @escaping(Result<[Artifact], Error>)->()){
+    //POST Request
+    mutating func fetchAllArtfiacts(location: LocationJSONModel ,completion: @escaping(Result<[Artifact], Error>)->()){
         urlComponent.path = EndPoint.getAllArtifacts.rawValue
         
         guard let url = urlComponent.url else { return }
         
-        URLSession.shared.dataTask(with: url){(data, response, error) in
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = HTTPMethod.post.rawValue
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = try? JSONEncoder().encode(location)
+        
+        URLSession.shared.dataTask(with: urlRequest){(data, response, error) in
             if error != nil{
                 completion(.failure(error!))
                 print(error!)
@@ -47,12 +54,12 @@ struct APIClient {
                 guard let _ = response as? HTTPURLResponse, let jsonData = data  else { return }
                 let artifactsData = try? JSONDecoder().decode([Artifact].self, from: jsonData)
                 guard let artifacts = artifactsData else { return }
-            
+
                 completion(.success(artifacts))
             }
         }.resume()
     }
-    //GET Request
+    //POST Request
     mutating func getAllLocation(completion: @escaping(Result<[Location], Error>)->()){
         urlComponent.path = EndPoint.getAllLocation.rawValue
         
@@ -70,15 +77,36 @@ struct APIClient {
                 completion(.failure(error!))
                 print(error!)
             } else{
-                guard let httpResponse = response as? HTTPURLResponse, let jsonData = data  else { return }
-                print(httpResponse.statusCode)
+                guard let _ = response as? HTTPURLResponse, let jsonData = data  else { return }
                 let locationData = try? JSONDecoder().decode([Location].self, from: jsonData)
                 guard let locations = locationData else { return }
                     completion(.success(locations))
             }
             }.resume()
     }
-    //GET Request
+    mutating func getLocation(location: LocationJSONModel, completion: @escaping(Result<Location, Error>)->()){
+        urlComponent.path = EndPoint.getLocation.rawValue
+        
+        guard let url = urlComponent.url else { return }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = HTTPMethod.post.rawValue
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = try? JSONEncoder().encode(location)
+        
+        URLSession.shared.dataTask(with: urlRequest){(data, response, error) in
+            if error != nil{
+                completion(.failure(error!))
+                print(error!)
+            } else{
+                guard let _ = response as? HTTPURLResponse, let jsonData = data  else { return }
+                let locationData = try? JSONDecoder().decode(Location.self, from: jsonData)
+                guard let currentLocation = locationData else { return }
+                completion(.success(currentLocation))
+            }
+            }.resume()
+    }
+    //POST Request
     mutating func getMainPageContent(location: LocationJSONModel, completion: @escaping(Result<[MainPageContent], Error>)->()){
         urlComponent.path = EndPoint.getMainPageContent.rawValue
         
@@ -101,6 +129,31 @@ struct APIClient {
             }
             }.resume()
     }
+    
+    //POST Request
+    mutating func getCampaigns(location: LocationJSONModel, completion: @escaping(Result<[Campaign], Error>)->()){
+        urlComponent.path = EndPoint.getCampaigns.rawValue
+        
+        guard let url = urlComponent.url else { return }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = HTTPMethod.post.rawValue
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = try? JSONEncoder().encode(location)
+        
+        URLSession.shared.dataTask(with: urlRequest){(data, response, error) in
+            if error != nil{
+                completion(.failure(error!))
+                print(error!)
+            } else{
+                guard let _ = response as? HTTPURLResponse, let jsonData = data  else { return }
+                let campaignData = try? JSONDecoder().decode([Campaign].self, from: jsonData)
+                guard let campaigns = campaignData else { return }
+                completion(.success(campaigns))
+            }
+            }.resume()
+    }
+    
     //GET Request
     mutating func getAllBeacons(completion: @escaping(Result<[Beacon], Error>)->()){
         urlComponent.path = EndPoint.getAllBeacons.rawValue
@@ -137,7 +190,6 @@ struct APIClient {
                 print(error!)
             } else{
                 guard let httpResponse = response as? HTTPURLResponse, let jsonData = data  else { return }
-                print(httpResponse.statusCode)
                 let contentData = try? JSONDecoder().decode(Content.self, from: jsonData)
                 guard let content = contentData else { return }
                 completion(.success(content))

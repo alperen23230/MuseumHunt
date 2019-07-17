@@ -17,7 +17,8 @@ class PreferencesTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToChangeLocation" {
-            UserDefaults.standard.set(true, forKey: "isChange")
+            UserDefaults.standard.set(true, forKey: "isChangeLocationForHome")
+             UserDefaults.standard.set(true, forKey: "isChangeLocationForArtifact")
         }
     }
 

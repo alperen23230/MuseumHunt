@@ -31,7 +31,7 @@ class MainPageContentTableViewCell: UITableViewCell {
     }
     
     func setMainPageContent(content: MainPageContentCache){
-        let urlBase = "https://testblobkayten.blob.core.windows.net/blobcontainer"
+        let urlBase = "https://testblobkayten.blob.core.windows.net/blobcontainer/"
         guard let url = URL(string: urlBase + content.mainImageURL) else { return }
         contentMainImageView.sd_setImage(with: url)
         contentNameLabel.text = content.name

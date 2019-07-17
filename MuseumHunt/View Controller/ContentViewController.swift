@@ -15,7 +15,6 @@ class ContentViewController: UIViewController {
 
     var content: Content!
     
-    
     @IBOutlet weak var slideImageView: ImageSlideshow!
     
     @IBOutlet weak var textView: UITextView!

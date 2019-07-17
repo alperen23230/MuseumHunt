@@ -28,14 +28,15 @@ class HomePageTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         homePageView.layer.cornerRadius = 20
-        homePageView.backgroundColor = UIColor(white: 1, alpha: 0.7)
+        homePageView.backgroundColor = UIColor(hexString: "#000000", withAlpha: 0.5)
+        
         
         homePageContentImageView.layer.cornerRadius = 20
         homePageContentImageView.clipsToBounds = true
     }
     
     func setHomePageContent(content: MainPageContentCache){
-        let urlBase = "https://testblobkayten.blob.core.windows.net/blobcontainer"
+        let urlBase = "https://testblobkayten.blob.core.windows.net/blobcontainer/"
         guard let url = URL(string: urlBase + content.mainImageURL) else { return }
         homePageContentImageView.sd_setImage(with: url)
         homePageTitleLabel.text = content.name

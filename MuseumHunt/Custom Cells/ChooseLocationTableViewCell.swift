@@ -32,7 +32,7 @@ class ChooseLocationTableViewCell: UITableViewCell {
     }
 
     func setLocationCell(location: Location){
-        let urlBase = "https://testblobkayten.blob.core.windows.net/blobcontainer"
+        let urlBase = "https://testblobkayten.blob.core.windows.net/blobcontainer/"
         guard let url = URL(string: urlBase + location.photoURL) else { return }
         locationImageView.sd_setImage(with: url)
         locationNameLabel.text = location.name

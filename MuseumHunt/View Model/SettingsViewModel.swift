@@ -74,24 +74,24 @@ final class SettingsViewModel {
         DispatchQueue.main.async {
             KRProgressHUD.show()
         }
-        APIClient.sharedInstance.fetchAllArtfiacts { (result) in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let artifacts):
-                DispatchQueue.main.async {
-                    for artifact in artifacts{
-                        let artifactCache = ArtifactCache()
-                        artifactCache.name = artifact.name
-                        artifactCache.floorName = artifact.floorName
-                        artifactCache.roomName = artifact.roomName
-                        artifactCache.buildingName = artifact.buildingName
-                        artifactCache.imageURL = artifact.mainImageURL
-                        self.artifactVM.saveArtifactCache(artifact: artifactCache)
-                    }
-                    self.artifactVM.loadArtifacts()
-                }
-            }
-        }
+//        APIClient.sharedInstance.fetchAllArtfiacts { (result) in
+//            switch result {
+//            case .failure(let error):
+//                print(error)
+//            case .success(let artifacts):
+//                DispatchQueue.main.async {
+//                    for artifact in artifacts{
+//                        let artifactCache = ArtifactCache()
+//                        artifactCache.name = artifact.name
+//                        artifactCache.floorName = artifact.floorName
+//                        artifactCache.roomName = artifact.roomName
+//                        artifactCache.buildingName = artifact.buildingName
+//                        artifactCache.imageURL = artifact.mainImageURL
+//                        self.artifactVM.saveArtifactCache(artifact: artifactCache)
+//                    }
+//                    self.artifactVM.loadArtifacts()
+//                }
+//            }
+//        }
     }
 }
