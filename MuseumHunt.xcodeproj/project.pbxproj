@@ -46,6 +46,9 @@
 		84E0540B22D371F700ED7A87 /* MainPageContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0540A22D371F700ED7A87 /* MainPageContentViewModel.swift */; };
 		84E0540D22D383D200ED7A87 /* MainPageContentCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E0540C22D383D200ED7A87 /* MainPageContentCache.swift */; };
 		84E3445622D45D4300AC7F6C /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E3445522D45D4300AC7F6C /* Content.swift */; };
+		84F951FF22DEF3CF00720941 /* HomePageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F951FE22DEF3CF00720941 /* HomePageTableViewController.swift */; };
+		84F9520122DEFCD300720941 /* LocationJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9520022DEFCD300720941 /* LocationJSONModel.swift */; };
+		84F9520322DF095400720941 /* PreferencesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9520222DF095400720941 /* PreferencesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +107,9 @@
 		84E0540A22D371F700ED7A87 /* MainPageContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageContentViewModel.swift; sourceTree = "<group>"; };
 		84E0540C22D383D200ED7A87 /* MainPageContentCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageContentCache.swift; sourceTree = "<group>"; };
 		84E3445522D45D4300AC7F6C /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		84F951FE22DEF3CF00720941 /* HomePageTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageTableViewController.swift; sourceTree = "<group>"; };
+		84F9520022DEFCD300720941 /* LocationJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationJSONModel.swift; sourceTree = "<group>"; };
+		84F9520222DF095400720941 /* PreferencesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTableViewController.swift; sourceTree = "<group>"; };
 		8C5D1EFFA3AE30FC493B6A79 /* Pods-MuseumHuntTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseumHuntTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MuseumHuntTests/Pods-MuseumHuntTests.debug.xcconfig"; sourceTree = "<group>"; };
 		963E428FE10DAC49042D9768 /* Pods-MuseumHuntTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MuseumHuntTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MuseumHuntTests/Pods-MuseumHuntTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,6 +193,7 @@
 				84E0540C22D383D200ED7A87 /* MainPageContentCache.swift */,
 				84E3445522D45D4300AC7F6C /* Content.swift */,
 				84CB681A22D8A7B30016EA96 /* Project.swift */,
+				84F9520022DEFCD300720941 /* LocationJSONModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,6 +209,8 @@
 				84E0540222D3539B00ED7A87 /* ContentViewController.swift */,
 				84CB681722D86A0E0016EA96 /* ChooseLocationTableViewController.swift */,
 				8406DEC022DE40E300343F05 /* CustomTabBarViewController.swift */,
+				84F951FE22DEF3CF00720941 /* HomePageTableViewController.swift */,
+				84F9520222DF095400720941 /* PreferencesTableViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -411,7 +420,9 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MuseumHunt/Pods-MuseumHunt-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/DGElasticPullToRefresh/DGElasticPullToRefresh.framework",
 				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
+				"${BUILT_PRODUCTS_DIR}/IBAnimatable/IBAnimatable.framework",
 				"${BUILT_PRODUCTS_DIR}/ImageSlideshow/ImageSlideshow.framework",
 				"${BUILT_PRODUCTS_DIR}/KRActivityIndicatorView/KRActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/KRProgressHUD/KRProgressHUD.framework",
@@ -424,7 +435,9 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DGElasticPullToRefresh.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IBAnimatable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageSlideshow.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KRProgressHUD.framework",
@@ -523,6 +536,7 @@
 				84B746B822CE0BDC008A7D29 /* ArtifactCache.swift in Sources */,
 				84E3445622D45D4300AC7F6C /* Content.swift in Sources */,
 				84133D8D22CCF4CF00CB1C3E /* ArtifactViewModel.swift in Sources */,
+				84F951FF22DEF3CF00720941 /* HomePageTableViewController.swift in Sources */,
 				843ED12022CA473A00146287 /* APIClient.swift in Sources */,
 				84B746B422CDD3F0008A7D29 /* ArtifactTableViewCell.swift in Sources */,
 				84CB681622D8675D0016EA96 /* ChooseLocationTableViewCell.swift in Sources */,
@@ -534,6 +548,8 @@
 				8406DEC122DE40E300343F05 /* CustomTabBarViewController.swift in Sources */,
 				843ED11A22CA321E00146287 /* Beacon.swift in Sources */,
 				8479930B22C63D6B0099D6D4 /* AppDelegate.swift in Sources */,
+				84F9520122DEFCD300720941 /* LocationJSONModel.swift in Sources */,
+				84F9520322DF095400720941 /* PreferencesTableViewController.swift in Sources */,
 				843ED11822CA1FEB00146287 /* SettingsViewController.swift in Sources */,
 				84E0540522D3590D00ED7A87 /* ContentViewModel.swift in Sources */,
 				84133D8B22CCF34200CB1C3E /* Artifact.swift in Sources */,

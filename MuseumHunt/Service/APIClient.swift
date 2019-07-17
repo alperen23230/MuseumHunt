@@ -79,12 +79,17 @@ struct APIClient {
             }.resume()
     }
     //GET Request
-    mutating func getMainPageContent(completion: @escaping(Result<[MainPageContent], Error>)->()){
+    mutating func getMainPageContent(location: LocationJSONModel, completion: @escaping(Result<[MainPageContent], Error>)->()){
         urlComponent.path = EndPoint.getMainPageContent.rawValue
         
         guard let url = urlComponent.url else { return }
         
-        URLSession.shared.dataTask(with: url){(data, response, error) in
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = HTTPMethod.post.rawValue
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = try? JSONEncoder().encode(location)
+        
+        URLSession.shared.dataTask(with: urlRequest){(data, response, error) in
             if error != nil{
                 completion(.failure(error!))
                 print(error!)

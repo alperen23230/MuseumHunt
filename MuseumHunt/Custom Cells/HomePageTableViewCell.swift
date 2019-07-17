@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomePageTableViewCell: UITableViewCell {
     
@@ -24,13 +25,20 @@ class HomePageTableViewCell: UITableViewCell {
         // Initialization code
     }
     
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         homePageView.layer.cornerRadius = 20
-        homePageView.backgroundColor = UIColor(white: 1, alpha: 0.3)
+        homePageView.backgroundColor = UIColor(white: 1, alpha: 0.7)
+        
         homePageContentImageView.layer.cornerRadius = 20
         homePageContentImageView.clipsToBounds = true
     }
-
+    
+    func setHomePageContent(content: MainPageContentCache){
+        let urlBase = "https://testblobkayten.blob.core.windows.net/blobcontainer"
+        guard let url = URL(string: urlBase + content.mainImageURL) else { return }
+        homePageContentImageView.sd_setImage(with: url)
+        homePageTitleLabel.text = content.name
+        homePageDescriptionLabel.text = content.descrpt
+    }
 }

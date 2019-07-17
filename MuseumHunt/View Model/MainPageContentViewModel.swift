@@ -31,4 +31,16 @@ final class MainPageContentViewModel {
     func loadMainPageContents(){
         mainPageContentsCache = realm.objects(MainPageContentCache.self)
     }
+    func clearMainPageContentCache(){
+        do{
+            try self.realm.write {
+                loadMainPageContents()
+                //And delete main page contents in cache
+                realm.delete(mainPageContentsCache!)
+            }
+        }
+        catch{
+            print("Error: \(error)")
+        }
+    }
 }

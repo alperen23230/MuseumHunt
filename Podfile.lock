@@ -2,7 +2,9 @@ PODS:
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
+  - DGElasticPullToRefresh (1.1)
   - Eureka (4.3.1)
+  - IBAnimatable (6.0.0)
   - ImageSlideshow (1.8.0):
     - ImageSlideshow/Core (= 1.8.0)
   - ImageSlideshow/Core (1.8.0)
@@ -23,7 +25,9 @@ PODS:
 
 DEPENDENCIES:
   - ChameleonFramework/Swift
+  - DGElasticPullToRefresh
   - Eureka
+  - IBAnimatable
   - ImageSlideshow
   - ImageSlideshow/SDWebImage
   - KRProgressHUD
@@ -33,7 +37,9 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ChameleonFramework
+    - DGElasticPullToRefresh
     - Eureka
+    - IBAnimatable
     - ImageSlideshow
     - KRActivityIndicatorView
     - KRProgressHUD
@@ -43,7 +49,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  DGElasticPullToRefresh: 28f11a6026302a90f8ffebbc6e24748e584dddd3
   Eureka: 28ea296f06710f6745266b71f17862048941a32d
+  IBAnimatable: d49f9fee0c401b5b08d31b77256b77fb067e0e92
   ImageSlideshow: 197130fe349aafa9446f54277c792551d41eadf9
   KRActivityIndicatorView: a2022d5d3e366207d2690f6bcc550f83aa91241b
   KRProgressHUD: 115363b48feb530ab1f36c4146ed22e779e0f5aa
@@ -51,6 +59,6 @@ SPEC CHECKSUMS:
   RealmSwift: a81e650171ef0a5f999df1ed8d39ba8d6fce88a4
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
 
-PODFILE CHECKSUM: 8056097ef08ec7770180d3e0f083655f44a11205
+PODFILE CHECKSUM: 6ac6a70d36f7389d8a745d671f0ad194371c1779
 
 COCOAPODS: 1.5.3

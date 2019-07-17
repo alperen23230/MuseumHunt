@@ -44,29 +44,29 @@ final class SettingsViewModel {
     }
     
     func fetchNewMainPageContents(){
-        APIClient.sharedInstance.getMainPageContent { (result) in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let mainPageContents):
-                DispatchQueue.main.async {
-                    _ = mainPageContents.map({
-                        let mainPageContent = MainPageContentCache()
-                        mainPageContent.name = $0.name
-                        mainPageContent.title = $0.title
-                        mainPageContent.descrpt = $0.description
-                        mainPageContent.mainImageURL = $0.mainImageURL
-                        mainPageContent.slideImageURL = $0.slideImageURL
-                        mainPageContent.videoURL = $0.videoURL
-                        mainPageContent.audioURL = $0.audioURL
-                        mainPageContent.text = $0.text
-                        self.mainPageContentVM.saveMainPageContentCache(content: mainPageContent)
-                    })
-                    self.mainPageContentVM.loadMainPageContents()
-                    KRProgressHUD.dismiss()
-                }
-            }
-        }
+//        APIClient.sharedInstance.getMainPageContent { (result) in
+//            switch result {
+//            case .failure(let error):
+//                print(error)
+//            case .success(let mainPageContents):
+//                DispatchQueue.main.async {
+//                    _ = mainPageContents.map({
+//                        let mainPageContent = MainPageContentCache()
+//                        mainPageContent.name = $0.name
+//                        mainPageContent.title = $0.title
+//                        mainPageContent.descrpt = $0.description
+//                        mainPageContent.mainImageURL = $0.mainImageURL
+//                        mainPageContent.slideImageURL = $0.slideImageURL
+//                        mainPageContent.videoURL = $0.videoURL
+//                        mainPageContent.audioURL = $0.audioURL
+//                        mainPageContent.text = $0.text
+//                        self.mainPageContentVM.saveMainPageContentCache(content: mainPageContent)
+//                    })
+//                    self.mainPageContentVM.loadMainPageContents()
+//                    KRProgressHUD.dismiss()
+//                }
+//            }
+//        }
     }
     
     

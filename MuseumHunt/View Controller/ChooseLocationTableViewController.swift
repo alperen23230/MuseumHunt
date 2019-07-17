@@ -23,11 +23,21 @@ class ChooseLocationTableViewController: UITableViewController, CLLocationManage
         chooseLocationVM = ChooseLocationViewModel()
         
         locationManager.requestAlwaysAuthorization()
-        
     }
 
     override func viewDidAppear(_ animated: Bool) {
-       fetchAllLocations()
+        let changeState = UserDefaults.standard.bool(forKey: "isChange")
+        if changeState {
+            title = "Change Location"
+            fetchAllLocations()
+        } else {
+            if launch != "FirstTime" {
+                performSegue(withIdentifier: "goToHomePage", sender: nil)
+            } else {
+                fetchAllLocations()
+            }
+        }
+       
     }
 
     func fetchAllLocations(){
@@ -84,7 +94,6 @@ class ChooseLocationTableViewController: UITableViewController, CLLocationManage
         let app = UIApplication.shared
         app.open(url!, options: [:])
     }
-
 }
 
 extension ChooseLocationTableViewController{
@@ -105,5 +114,14 @@ extension ChooseLocationTableViewController{
         cell.setLocationCell(location: location)
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let location = chooseLocationVM.locations[indexPath.row]
+        
+        UserDefaults.standard.set(location.id, forKey: "CurrentLocation")
+        
+        performSegue(withIdentifier: "goToHomePage", sender: nil)
     }
 }

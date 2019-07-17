@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="A7a-Rn-UMS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="s6C-9b-pTJ">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -71,7 +71,7 @@
         <!--Preferences-->
         <scene sceneID="ACl-VR-iCn">
             <objects>
-                <tableViewController id="emL-qT-3V8" sceneMemberID="viewController">
+                <tableViewController id="emL-qT-3V8" customClass="PreferencesTableViewController" customModule="MuseumHunt" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="4lt-N6-dVu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -99,6 +99,9 @@
                                                 <constraint firstItem="Vb2-Pc-3P8" firstAttribute="leading" secondItem="uOH-Sp-Tv5" secondAttribute="leading" constant="20" id="wtb-0L-xoN"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="s6C-9b-pTJ" kind="custom" identifier="goToChangeLocation" customClass="PresentTurnSegue" customModule="IBAnimatable" id="FYv-0r-A7q"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="FXh-ml-2qa">
                                         <rect key="frame" x="0.0" y="60" width="414" height="60"/>
@@ -373,10 +376,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Choose a Museum" id="Q52-OE-sHH"/>
+                    <connections>
+                        <segue destination="A7a-Rn-UMS" kind="custom" identifier="goToHomePage" customClass="PresentTurnSegue" customModule="IBAnimatable" id="2IK-3L-HYD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8we-iv-uLi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3950.7246376811599" y="-289.28571428571428"/>
+            <point key="canvasLocation" x="3812" y="-289"/>
         </scene>
         <!--Content-->
         <scene sceneID="iX6-gL-vlp">
@@ -513,33 +519,34 @@
         <!--Home-->
         <scene sceneID="UM0-0E-KWh">
             <objects>
-                <tableViewController id="WIa-rN-PBQ" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="250" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Fr-6m-TJs">
+                <tableViewController id="WIa-rN-PBQ" customClass="HomePageTableViewController" customModule="MuseumHunt" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="250" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Fr-6m-TJs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" red="0.60784313729999995" green="0.34901960780000002" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="homePageCell" id="bey-dD-OLX" customClass="HomePageTableViewCell" customModule="MuseumHunt" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="250"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bey-dD-OLX" id="KAU-om-Ia9">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="249.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n28-Yd-KlN">
-                                            <rect key="frame" x="20" y="20" width="374" height="209.5"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n28-Yd-KlN">
+                                            <rect key="frame" x="20" y="20" width="374" height="210"/>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EIf-bh-pbM">
-                                            <rect key="frame" x="20" y="20" width="374" height="209.5"/>
+                                            <rect key="frame" x="20" y="20" width="374" height="210"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4W-eJ-baJ">
-                                                    <rect key="frame" x="100" y="30" width="174" height="33"/>
+                                                    <rect key="frame" x="100" y="40" width="174" height="34"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="27"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Hu-ok-7gt">
-                                                    <rect key="frame" x="30" y="105" width="314" height="26"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Description" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Hu-ok-7gt">
+                                                    <rect key="frame" x="30" y="84" width="314" height="26"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="21"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -547,13 +554,13 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="o4W-eJ-baJ" firstAttribute="top" secondItem="EIf-bh-pbM" secondAttribute="top" constant="30" id="8lu-Mt-6Pr"/>
+                                                <constraint firstItem="o4W-eJ-baJ" firstAttribute="top" secondItem="EIf-bh-pbM" secondAttribute="top" constant="40" id="8lu-Mt-6Pr"/>
                                                 <constraint firstAttribute="trailing" secondItem="2Hu-ok-7gt" secondAttribute="trailing" constant="30" id="GPY-rz-ZoJ"/>
-                                                <constraint firstItem="2Hu-ok-7gt" firstAttribute="top" secondItem="o4W-eJ-baJ" secondAttribute="bottom" constant="42" id="RdX-py-B16"/>
+                                                <constraint firstItem="2Hu-ok-7gt" firstAttribute="top" secondItem="o4W-eJ-baJ" secondAttribute="bottom" constant="10" id="RdX-py-B16"/>
                                                 <constraint firstAttribute="trailing" secondItem="o4W-eJ-baJ" secondAttribute="trailing" constant="100" id="Rq0-Fh-6oT"/>
                                                 <constraint firstItem="2Hu-ok-7gt" firstAttribute="leading" secondItem="EIf-bh-pbM" secondAttribute="leading" constant="30" id="iTN-jO-Yje"/>
                                                 <constraint firstItem="o4W-eJ-baJ" firstAttribute="leading" secondItem="EIf-bh-pbM" secondAttribute="leading" constant="100" id="nGU-49-G2m"/>
-                                                <constraint firstAttribute="bottom" secondItem="2Hu-ok-7gt" secondAttribute="bottom" constant="78.5" id="o0k-dq-pLp"/>
+                                                <constraint firstAttribute="bottom" secondItem="2Hu-ok-7gt" secondAttribute="bottom" constant="100" id="o0k-dq-pLp"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -570,6 +577,7 @@
                                         <constraint firstItem="n28-Yd-KlN" firstAttribute="top" secondItem="KAU-om-Ia9" secondAttribute="top" constant="20" id="vcj-70-W4A"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.60784313729999995" green="0.34901960780000002" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="homePageContentImageView" destination="n28-Yd-KlN" id="eoI-VS-FUk"/>
                                     <outlet property="homePageDescriptionLabel" destination="2Hu-ok-7gt" id="kXh-jN-Lpo"/>
@@ -693,7 +701,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dfk-Fa-Auh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3040.579710144928" y="-289.28571428571428"/>
+            <point key="canvasLocation" x="2943" y="-289"/>
         </scene>
         <!--Artifacts-->
         <scene sceneID="Tl7-0C-Nhf">

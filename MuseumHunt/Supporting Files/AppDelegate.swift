@@ -10,6 +10,7 @@ import UIKit
 import RealmSwift
 import CoreBluetooth
 import ChameleonFramework
+import KRProgressHUD
 
 var launch = ""
 
@@ -27,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.flatMagenta()
         
         UITabBar.appearance().tintColor = UIColor.flatMagenta()
+        
+        KRProgressHUD.set(activityIndicatorViewColors: [UIColor.flatMagenta(), UIColor.white])
+        KRProgressHUD.set(font: UIFont(name: "SFProDisplay-Regular", size: 17)!)
         
         
         manager = CBCentralManager()

@@ -12,6 +12,8 @@ target 'MuseumHunt' do
     pod 'RealmSwift'
     pod 'ImageSlideshow/SDWebImage'
     pod 'ChameleonFramework/Swift'
+    pod 'DGElasticPullToRefresh'
+    pod 'IBAnimatable'
 
   target 'MuseumHuntTests' do
     inherit! :search_paths
