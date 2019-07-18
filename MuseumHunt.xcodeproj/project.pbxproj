@@ -14,6 +14,7 @@
 		84064E8B22E057AB00FA6F05 /* CustomTourButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84064E8A22E057AB00FA6F05 /* CustomTourButton.swift */; };
 		84064E8D22E05A3400FA6F05 /* InteractiveTourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84064E8C22E05A3400FA6F05 /* InteractiveTourViewController.swift */; };
 		84064E8F22E068D600FA6F05 /* InteractiveTourViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84064E8E22E068D600FA6F05 /* InteractiveTourViewModel.swift */; };
+		84064E9122E08D3C00FA6F05 /* BeaconContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84064E9022E08D3C00FA6F05 /* BeaconContentTableViewCell.swift */; };
 		8406DEC122DE40E300343F05 /* CustomTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406DEC022DE40E300343F05 /* CustomTabBarViewController.swift */; };
 		8406DEC322DE4A3300343F05 /* HomePageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8406DEC222DE4A3300343F05 /* HomePageTableViewCell.swift */; };
 		84133D8B22CCF34200CB1C3E /* Artifact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84133D8A22CCF34200CB1C3E /* Artifact.swift */; };
@@ -80,6 +81,7 @@
 		84064E8A22E057AB00FA6F05 /* CustomTourButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTourButton.swift; sourceTree = "<group>"; };
 		84064E8C22E05A3400FA6F05 /* InteractiveTourViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTourViewController.swift; sourceTree = "<group>"; };
 		84064E8E22E068D600FA6F05 /* InteractiveTourViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTourViewModel.swift; sourceTree = "<group>"; };
+		84064E9022E08D3C00FA6F05 /* BeaconContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconContentTableViewCell.swift; sourceTree = "<group>"; };
 		8406DEC022DE40E300343F05 /* CustomTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarViewController.swift; sourceTree = "<group>"; };
 		8406DEC222DE4A3300343F05 /* HomePageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageTableViewCell.swift; sourceTree = "<group>"; };
 		84133D8A22CCF34200CB1C3E /* Artifact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artifact.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				84CB681522D8675D0016EA96 /* ChooseLocationTableViewCell.swift */,
 				8406DEC222DE4A3300343F05 /* HomePageTableViewCell.swift */,
 				84F9520822DF649400720941 /* CampaignTableViewCell.swift */,
+				84064E9022E08D3C00FA6F05 /* BeaconContentTableViewCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				84E0540322D3539B00ED7A87 /* ContentViewController.swift in Sources */,
 				84B746B822CE0BDC008A7D29 /* ArtifactCache.swift in Sources */,
 				84064E8722E0373200FA6F05 /* CampaignContentViewController.swift in Sources */,
+				84064E9122E08D3C00FA6F05 /* BeaconContentTableViewCell.swift in Sources */,
 				84064E8D22E05A3400FA6F05 /* InteractiveTourViewController.swift in Sources */,
 				84E3445622D45D4300AC7F6C /* Content.swift in Sources */,
 				84133D8D22CCF4CF00CB1C3E /* ArtifactViewModel.swift in Sources */,

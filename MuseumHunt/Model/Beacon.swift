@@ -20,6 +20,6 @@ struct Beacon: Codable, Equatable {
 extension Beacon {
     //This method for comparison of 2 Beacon
     static func ==(lhs: Beacon, rhs: Beacon) -> Bool {
-        return lhs.uuid == rhs.uuid && lhs.major == rhs.major && lhs.minor == rhs.minor
+        return lhs.uuid == rhs.uuid && lhs.major == rhs.major && lhs.minor == rhs.minor && lhs.proximity == rhs.proximity
     }
 }

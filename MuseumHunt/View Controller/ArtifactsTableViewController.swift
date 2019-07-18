@@ -48,6 +48,7 @@ class ArtifactsTableViewController: UITableViewController {
         let isFetched = UserDefaults.standard.bool(forKey: "isFetchedArtifact")
         if launch == "FirstTime" {
             if !isFetched {
+                artifactVM.clearArtifactCache()
                 let locationID = UserDefaults.standard.string(forKey: "CurrentLocation")
                 fetchAndParseArtifacts(locationID: locationID!)
                 UserDefaults.standard.set(true, forKey: "isFetchedMainPage")
