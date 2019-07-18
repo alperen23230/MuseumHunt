@@ -14,7 +14,6 @@ import UserNotifications
 class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate, UNUserNotificationCenterDelegate {
     
     
-    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var startStopButton: CustomTourButton!
@@ -56,17 +55,37 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
         
     }
     
+    @objc func openBluetooth(alert: UIAlertAction){
+        let url = URL(string: "App-Prefs:root=General&path=Bluetooth") //for bluetooth setting
+        let app = UIApplication.shared
+        app.open(url!, options: [:])
+    }
+    
     @IBAction func startStopButtonClicked(_ sender: Any) {
         
          isStartTour = UserDefaults.standard.bool(forKey: "isStartTour")
         
         if !isStartTour {
-            //Fetch beacons and start ranging, monitoring
-            let locationID = UserDefaults.standard.string(forKey: "CurrentLocation")
-            fetchAllBeacons(locationID: locationID!)
-            
-            startStopButton.setTitle("Stop Tour", for: .normal)
-            UserDefaults.standard.set(true, forKey: "isStartTour")
+            if currentBluetoothState == "On" {
+                //Fetch beacons and start ranging, monitoring
+                let locationID = UserDefaults.standard.string(forKey: "CurrentLocation")
+                fetchAllBeacons(locationID: locationID!)
+                
+                startStopButton.setTitle("Stop Tour", for: .normal)
+                UserDefaults.standard.set(true, forKey: "isStartTour")
+            } else {
+                let alert = UIAlertController(title: "Settings",
+                                              message: "Please open your bluetooth for use this feature",
+                                              preferredStyle: UIAlertController.Style.alert)
+                
+                alert.addAction(UIAlertAction(title: "Open Settings",
+                                              style: UIAlertAction.Style.default,
+                                              handler: openBluetooth))
+                alert.addAction(UIAlertAction(title: "Cancel",
+                                              style: UIAlertAction.Style.default,
+                                              handler: nil))
+                self.present(alert, animated: true)
+            }
         } else {
             //Stop ranging and monitoring
             stopBeaconScan()
@@ -139,7 +158,6 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
         print("didEnter")
     }
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        postNotification(withBody: "Exit")
         print("didExit")
     }
     
