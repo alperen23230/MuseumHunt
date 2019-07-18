@@ -17,6 +17,7 @@ enum EndPoint: String {
     case getContentWithBeacon = "/api/relation/getcontentwithbeacon"
     case getLocation = "/api/location/getLocation"
     case getCampaigns = "/api/content/getcampaigncontents"
+    case getRelationWithBeacon = "/api/relation/getrelationwithbeacon"
 }
 
 enum HTTPMethod: String {
@@ -154,28 +155,33 @@ struct APIClient {
             }.resume()
     }
     
-    //GET Request
-    mutating func getAllBeacons(completion: @escaping(Result<[Beacon], Error>)->()){
+    //POST Request
+    mutating func getAllBeacons(location: LocationJSONModel, completion: @escaping(Result<[Beacon], Error>)->()){
         urlComponent.path = EndPoint.getAllBeacons.rawValue
         
         guard let url = urlComponent.url else { return }
         
-        URLSession.shared.dataTask(with: url){(data, response, error) in
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = HTTPMethod.post.rawValue
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = try? JSONEncoder().encode(location)
+        
+        URLSession.shared.dataTask(with: urlRequest){(data, response, error) in
             if error != nil{
                 completion(.failure(error!))
                 print(error!)
             } else{
                 guard let _ = response as? HTTPURLResponse, let jsonData = data  else { return }
                 let beaconData = try? JSONDecoder().decode([Beacon].self, from: jsonData)
-                guard let allBeacons = beaconData else { return }
-                completion(.success(allBeacons))
+                guard let beacons = beaconData else { return }
+                completion(.success(beacons))
             }
             }.resume()
     }
     //POST Request
-    mutating func getContentWithBeacon(beacon: Beacon, completion: @escaping(Result<Content, Error>)->()){
+    mutating func getContentWithBeacon(beacon: Beacon, completion: @escaping(Result<RelationBeacon, Error>)->()){
         
-        urlComponent.path = EndPoint.getContentWithBeacon.rawValue
+        urlComponent.path = EndPoint.getRelationWithBeacon.rawValue
         
         guard let url = urlComponent.url else { return }
         
@@ -190,9 +196,10 @@ struct APIClient {
                 print(error!)
             } else{
                 guard let httpResponse = response as? HTTPURLResponse, let jsonData = data  else { return }
-                let contentData = try? JSONDecoder().decode(Content.self, from: jsonData)
-                guard let content = contentData else { return }
-                completion(.success(content))
+                print(httpResponse.statusCode)
+                let relationBeaconContentData = try? JSONDecoder().decode(RelationBeacon.self, from: jsonData)
+                guard let relationBeaconContent = relationBeaconContentData else { return }
+                completion(.success(relationBeaconContent))
             }
             }.resume()
     }

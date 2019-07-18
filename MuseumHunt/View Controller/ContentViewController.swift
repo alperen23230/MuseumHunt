@@ -36,7 +36,7 @@ class ContentViewController: UIViewController {
     @IBOutlet weak var imageThumbnailHeight: NSLayoutConstraint!
     
     
-    let urlBase = "https://testblobkayten.blob.core.windows.net/blobcontainer"
+    let urlBase = "https://testblobkayten.blob.core.windows.net/blobcontainer/"
     
     var isPlayAudio = false
     

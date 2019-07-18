@@ -40,7 +40,8 @@ class CampaignTableViewController: UITableViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-         let locationID = UserDefaults.standard.string(forKey: "CurrentLocation")
+        campaignVM.campaigns.removeAll()
+        let locationID = UserDefaults.standard.string(forKey: "CurrentLocation")
         fetchCampaigns(locationID: locationID!)
     }
 
@@ -80,5 +81,20 @@ extension CampaignTableViewController {
         cell.setCampaign(campaign: campaign)
         
         return cell
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToCampaignContent", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToCampaignContent" {
+            if let destinationVC = segue.destination as? CampaignContentViewController {
+                if let indexPath = tableView.indexPathForSelectedRow{
+                    let campaignContent = campaignVM.campaigns[indexPath.row]
+                    
+                    destinationVC.campaign = campaignContent
+                }
+            }
+        }
     }
 }
