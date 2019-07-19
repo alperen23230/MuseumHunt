@@ -26,8 +26,16 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
     
     let locationManager = CLLocationManager()
     
+    var launchTour = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        checkFirstTimeTour()
+        
+        if launchTour == "FirstTime" {
+            MyAlert.show(title: "Interactive Tours", description: "Here you can start the interactive tour you can visit the artifacts you want to visit.", buttonTxt: "OK")
+        }
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -45,14 +53,27 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
         isStartTour = UserDefaults.standard.bool(forKey: "isStartTour")
         
         if !isStartTour {
+            startStopButton.stopAnimating()
             startStopButton.setTitle("Start Tour", for: .normal)
         } else {
+            startStopButton.animatePulsatingLayer()
             InteractiveTourViewModel.allBeacons.removeAll()
              let locationID = UserDefaults.standard.string(forKey: "CurrentLocation")
             fetchAllBeacons(locationID: locationID!)
             startStopButton.setTitle("Stop Tour", for: .normal)
         }
         
+    }
+    
+    func checkFirstTimeTour(){
+        let checkFirstTimeTour = UserDefaults.standard.bool(forKey: "checkFirstTimeTour")
+        
+        if checkFirstTimeTour {
+            launchTour = "BeforeLaunch"
+        } else {
+            launchTour = "FirstTime"
+            UserDefaults.standard.set(true, forKey: "checkFirstTimeTour")
+        }
     }
     
     @objc func openBluetooth(alert: UIAlertAction){
@@ -68,6 +89,7 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
         if !isStartTour {
             if currentBluetoothState == "On" {
                 //Fetch beacons and start ranging, monitoring
+                startStopButton.animatePulsatingLayer()
                 let locationID = UserDefaults.standard.string(forKey: "CurrentLocation")
                 fetchAllBeacons(locationID: locationID!)
                 
@@ -88,13 +110,14 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
             }
         } else {
             //Stop ranging and monitoring
+            startStopButton.stopAnimating()
             stopBeaconScan()
             InteractiveTourViewModel.allBeacons.removeAll()
             beaconRegions.removeAll()
             interactiveTourVM.getIsTravelFalse()
             
             if interactiveTourVM.isNotTravelArtifacts?.count != 0{
-                print("Gezilmemis artifact var")
+                MyAlert.show(title: "Warning!", description: "There are still artifacts you haven't visited!", buttonTxt: "OK")
             }
             
             startStopButton.setTitle("Start Tour", for: .normal)
@@ -108,6 +131,9 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
             switch result{
             case .failure(let error):
                 print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    MyAlert.show(title: "Error!", description: "Something went wrong!", buttonTxt: "OK")
+                }
             case .success(let beacons):
                 DispatchQueue.main.async {
                     InteractiveTourViewModel.allBeacons.append(contentsOf: beacons)
@@ -154,6 +180,8 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        //Post for analytic
+        
         postNotification(withBody: "Enter")
         print("didEnter")
     }
@@ -203,6 +231,9 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    MyAlert.show(title: "Error!", description: "Something went wrong!", buttonTxt: "OK")
+                }
             case .success(let content):
                 DispatchQueue.main.async {
                     let nilContent = RelationBeacon(artifactName: nil, contentName: nil, title: nil, description: nil, mainImageURL: nil, videoURL: nil, slideImageURL: nil, audioURL: nil, text: nil, isHomePage: false, isCampaign: false)

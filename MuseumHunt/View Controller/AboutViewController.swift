@@ -34,6 +34,10 @@ class AboutViewController: UIViewController {
             switch result {
             case .failure(let error):
                 print(error)
+                DispatchQueue.main.async {
+                    KRProgressHUD.dismiss()
+                    KRProgressHUD.showError()
+                }
             case .success(let location):
                 //And pass location to showOnMap function for showing location on the map
                 self.showOnMap(with: location)

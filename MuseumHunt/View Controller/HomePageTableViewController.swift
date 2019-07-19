@@ -78,6 +78,10 @@ class HomePageTableViewController: UITableViewController {
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    KRProgressHUD.dismiss()
+                    KRProgressHUD.showError()
+                }
             case .success(let contents):
                 DispatchQueue.main.async {
                     _ = contents.map({

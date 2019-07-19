@@ -348,72 +348,6 @@
             </objects>
             <point key="canvasLocation" x="5273.913043478261" y="1261.6071428571429"/>
         </scene>
-        <!--Museum Hunt-->
-        <scene sceneID="KSI-Bx-DtE">
-            <objects>
-                <tableViewController id="bkV-xR-mN7" customClass="MainPageTableViewController" customModule="MuseumHunt" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="NB1-Q7-nSt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="mainPageContentCell" id="8Q3-TE-4k8" customClass="MainPageContentTableViewCell" customModule="MuseumHunt" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Q3-TE-4k8" id="5yV-Ty-T6L">
-                                    <rect key="frame" x="0.0" y="0.0" width="376" height="100"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xun-SE-0Oi">
-                                            <rect key="frame" x="12" y="10" width="80" height="80"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="80" id="BRi-5h-qt8"/>
-                                                <constraint firstAttribute="height" constant="80" id="FAo-LD-do5"/>
-                                                <constraint firstAttribute="width" secondItem="xun-SE-0Oi" secondAttribute="height" multiplier="1:1" id="V2D-Ue-0Cd"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLo-yi-a2q">
-                                            <rect key="frame" x="104" y="20" width="202" height="20"/>
-                                            <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZED-Fk-eAV">
-                                            <rect key="frame" x="104" y="50" width="202" height="17"/>
-                                            <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="zLo-yi-a2q" firstAttribute="leading" secondItem="xun-SE-0Oi" secondAttribute="trailing" constant="12" id="0bJ-GD-gMZ"/>
-                                        <constraint firstItem="xun-SE-0Oi" firstAttribute="centerY" secondItem="5yV-Ty-T6L" secondAttribute="centerY" id="5df-40-qup"/>
-                                        <constraint firstAttribute="trailing" secondItem="ZED-Fk-eAV" secondAttribute="trailing" constant="70" id="7ac-ne-d8v"/>
-                                        <constraint firstItem="ZED-Fk-eAV" firstAttribute="top" secondItem="zLo-yi-a2q" secondAttribute="bottom" constant="10" id="Fg5-Nw-JjP"/>
-                                        <constraint firstItem="zLo-yi-a2q" firstAttribute="top" secondItem="5yV-Ty-T6L" secondAttribute="top" constant="20" id="Mlq-d3-N2o"/>
-                                        <constraint firstAttribute="trailing" secondItem="zLo-yi-a2q" secondAttribute="trailing" constant="70" id="Xwd-91-aPt"/>
-                                        <constraint firstItem="xun-SE-0Oi" firstAttribute="leading" secondItem="5yV-Ty-T6L" secondAttribute="leading" constant="12" id="byh-zz-XaW"/>
-                                        <constraint firstItem="ZED-Fk-eAV" firstAttribute="leading" secondItem="xun-SE-0Oi" secondAttribute="trailing" constant="12" id="rU9-vl-6T8"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="contentDescriptionLabel" destination="ZED-Fk-eAV" id="4o5-ek-jDo"/>
-                                    <outlet property="contentMainImageView" destination="xun-SE-0Oi" id="R17-8E-kO3"/>
-                                    <outlet property="contentNameLabel" destination="zLo-yi-a2q" id="h3A-X2-xFO"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="bkV-xR-mN7" id="VKw-GX-GW7"/>
-                            <outlet property="delegate" destination="bkV-xR-mN7" id="tXk-2W-cPV"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Museum Hunt" id="5CR-QR-pee"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0Qa-dj-6Pp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1789.8550724637682" y="-210.26785714285714"/>
-        </scene>
         <!--Choose a Museum-->
         <scene sceneID="vS6-Kt-8Aj">
             <objects>
@@ -717,28 +651,6 @@
             </objects>
             <point key="canvasLocation" x="3528" y="467"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="cFq-49-Nv1">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="udu-XS-ZQ7" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8N5-Ka-XTq">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="bkV-xR-mN7" kind="relationship" relationship="rootViewController" id="BNw-v6-4qq"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gxk-9r-wPd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="787" y="-210"/>
-        </scene>
         <!--Tour-->
         <scene sceneID="oAo-K8-CFR">
             <objects>
@@ -776,8 +688,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMs-07-kQ5">
-                                                    <rect key="frame" x="104" y="58" width="202" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="104" y="58" width="202" height="20"/>
+                                                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>

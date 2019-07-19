@@ -10,9 +10,6 @@ import UIKit
 import SDWebImage
 
 class BeaconContentTableViewCell: UITableViewCell {
-
-    
-    
     
     @IBOutlet weak var beaconContentImageView: UIImageView!
     
@@ -38,8 +35,12 @@ class BeaconContentTableViewCell: UITableViewCell {
         guard let url = URL(string: urlBase + imageURL) else { return }
         beaconContentImageView.sd_setImage(with: url)
         beaconContentNameLabel.text = content.contentName
+        if content.isCampaign {
+            beaconContentDescrpt.font = UIFont(name: "SFProDisplay-Medium", size: 17)
+            backgroundColor = UIColor(hexString: "#F1CEFF")
+        }
         if content.description == nil {
-            beaconContentDescrpt.text = "This content is advertisement"
+            beaconContentDescrpt.text = "Advertisement"
         } else {
             beaconContentDescrpt.text = content.description
         }

@@ -54,6 +54,10 @@ class CampaignTableViewController: UITableViewController {
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    KRProgressHUD.dismiss()
+                    KRProgressHUD.showError()
+                }
             case .success(let campaigns):
                 DispatchQueue.main.async {
                     self.campaignVM.campaigns.append(contentsOf: campaigns)

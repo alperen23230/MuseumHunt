@@ -48,6 +48,10 @@ class ChooseLocationTableViewController: UITableViewController, CLLocationManage
             switch result{
             case .failure(let error):
                 print(error.localizedDescription)
+                DispatchQueue.main.async {
+                    KRProgressHUD.dismiss()
+                    KRProgressHUD.showError()
+                }
             case .success(let locations):
                 DispatchQueue.main.async {
                     self.chooseLocationVM.locations.append(contentsOf: locations)

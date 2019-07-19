@@ -11,6 +11,8 @@ import ChameleonFramework
 
 class CustomTourButton: UIButton{
     
+    var pulsatingLayer: CAShapeLayer!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupButton()
@@ -22,13 +24,14 @@ class CustomTourButton: UIButton{
     }
     
     func setupButton(){
+        setPulsating()
         setShadow()
         setTitleColor(UIColor.white, for: .normal)
         backgroundColor = UIColor.flatMagenta()
         titleLabel?.font = UIFont(name: "SFProDisplay-Regular", size: 20)
         layer.cornerRadius = 50
-        layer.borderWidth = 1.0
-        layer.borderColor = UIColor.darkGray.cgColor
+        layer.borderWidth = 0.0
+        layer.borderColor = UIColor(hexString: "#753B8F")?.cgColor
     }
     
     private func setShadow(){
@@ -40,25 +43,31 @@ class CustomTourButton: UIButton{
         layer.masksToBounds = false
     }
     
-    
-    func shake(){
+    private func setPulsating(){
+        let circularPath = UIBezierPath(arcCenter: .zero, radius: 50, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
+        pulsatingLayer = CAShapeLayer()
+        pulsatingLayer.path = circularPath.cgPath
+        pulsatingLayer.strokeColor = UIColor.clear.cgColor
+        pulsatingLayer.lineWidth = 10
+        pulsatingLayer.fillColor = UIColor.flatMagenta()?.cgColor
+        pulsatingLayer.lineCap = CAShapeLayerLineCap.round
+        pulsatingLayer.position.x = 50
+        pulsatingLayer.position.y = 50
+        layer.addSublayer(pulsatingLayer)
+    }
+    func animatePulsatingLayer(){
+        let animation = CABasicAnimation(keyPath: "transform.scale")
         
-        let shake = CABasicAnimation(keyPath: "position")
-        shake.duration = 0.1
-        shake.repeatCount = 2
-        shake.autoreverses = true
+        animation.toValue = 1.5
+        animation.duration = 0.6
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        animation.autoreverses = true
+        animation.repeatCount = Float.infinity
         
-        let fromPoint = CGPoint(x: center.x - 8, y: center.y)
-        let fromValue = NSValue(cgPoint: fromPoint)
-        
-        let toPoint = CGPoint(x: center.x + 8, y: center.y)
-        let toValue = NSValue(cgPoint: toPoint)
-        
-        shake.fromValue = fromValue
-        shake.toValue = toValue
-        
-        layer.add(shake, forKey: "position")
-        
+        pulsatingLayer.add(animation, forKey: "pulsing")
+    }
+    func stopAnimating(){
+        pulsatingLayer.removeAllAnimations()
     }
     
 }

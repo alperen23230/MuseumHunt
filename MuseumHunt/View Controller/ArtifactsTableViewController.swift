@@ -12,15 +12,34 @@ import DGElasticPullToRefresh
 
 class ArtifactsTableViewController: UITableViewController {
     
+    var launchArtifact = ""
+    
     var artifactVM: ArtifactViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        checkFirstTimeArtifact()
+        
+        if launchArtifact == "FirstTime" {
+            MyAlert.show(title: "Artifacts", description: "You can visit this page by selecting the artifacts, you can do interactive tours.", buttonTxt: "OK")
+        }
+        
         //We create instance of Artifact View Model
         artifactVM = ArtifactViewModel()
         
         setupPullToRefresh()
+    }
+    
+    func checkFirstTimeArtifact(){
+        let isFirstTimeArtifact = UserDefaults.standard.bool(forKey: "isFirstTimeArtifact")
+        
+        if isFirstTimeArtifact {
+            launchArtifact = "BeforeLaunch"
+        } else {
+            launchArtifact = "FirstTime"
+            UserDefaults.standard.set(true, forKey: "isFirstTimeArtifact")
+        }
     }
     
     
@@ -80,6 +99,10 @@ class ArtifactsTableViewController: UITableViewController {
             switch result {
             case .failure(let error):
                 print(error)
+                DispatchQueue.main.async {
+                    KRProgressHUD.dismiss()
+                    KRProgressHUD.showError()
+                }
             case .success(let artifacts):
                 DispatchQueue.main.async {
                     for artifact in artifacts{

@@ -26,6 +26,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SF-Pro-Display-Medium.otf</string>
 		<string>SF-Pro-Display-Regular.otf</string>
 	</array>
 	<key>UIBackgroundModes</key>

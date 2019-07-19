@@ -7,13 +7,13 @@ target 'MuseumHunt' do
   # Pods for MuseumHunt
     pod 'ImageSlideshow'
     pod 'SDWebImage'
-    pod 'Eureka'
     pod 'KRProgressHUD'
     pod 'RealmSwift'
     pod 'ImageSlideshow/SDWebImage'
     pod 'ChameleonFramework/Swift'
     pod 'DGElasticPullToRefresh'
     pod 'IBAnimatable'
+    pod 'SwiftEntryKit'
 
   target 'MuseumHuntTests' do
     inherit! :search_paths
