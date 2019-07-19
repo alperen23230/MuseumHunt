@@ -181,9 +181,12 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         //Post for analytic
-        
-        postNotification(withBody: "Enter")
-        print("didEnter")
+        let beaconAnalytic = BeaconAnalytic(id: region.identifier)
+        APIClient.sharedInstance.postAnalytic(beaconAnalytic: beaconAnalytic)
+        DispatchQueue.main.async {
+            self.postNotification(withBody: "Please open your app and see the content")
+            print("didEnter")
+        }
     }
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("didExit")
@@ -259,7 +262,7 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
     func postNotification(withBody body: String) {
         let content = UNMutableNotificationContent()
         content.title = "We have a content for you"
-        content.body = "Please open your app and see the content"
+        content.body = body
         content.sound = UNNotificationSound.default
         let request = UNNotificationRequest(identifier: "EntryNotification", content: content, trigger: nil)
         UNUserNotificationCenter.current().add(request) { error in

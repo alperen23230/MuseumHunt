@@ -36,7 +36,7 @@ class CampaignTableViewCell: UITableViewCell {
     }
     
     func setCampaign(campaign: Campaign){
-        let urlBase = "https://testblobkayten.blob.core.windows.net/blobcontainer/"
+        let urlBase = "https://jwtapi20190719101048.blob.core.windows.net/beamityblob/"
         guard let url = URL(string: urlBase + campaign.mainImageURL) else { return }
         campaignImageView.sd_setImage(with: url)
         campaignNameLabel.text = campaign.name

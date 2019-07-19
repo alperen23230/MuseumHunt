@@ -18,6 +18,7 @@ enum EndPoint: String {
     case getLocation = "/api/location/getLocation"
     case getCampaigns = "/api/content/getcampaigncontents"
     case getRelationWithBeacon = "/api/relation/getrelationwithbeacon"
+    case postAnalytic = "api/analytic/createanalytic"
 }
 
 enum HTTPMethod: String {
@@ -200,6 +201,26 @@ struct APIClient {
                 let relationBeaconContentData = try? JSONDecoder().decode(RelationBeacon.self, from: jsonData)
                 guard let relationBeaconContent = relationBeaconContentData else { return }
                 completion(.success(relationBeaconContent))
+            }
+            }.resume()
+    }
+    //POST Request
+    mutating func postAnalytic(beaconAnalytic: BeaconAnalytic){
+        urlComponent.path = EndPoint.postAnalytic.rawValue
+        
+        guard let url = urlComponent.url else { return }
+        
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = HTTPMethod.post.rawValue
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = try? JSONEncoder().encode(beaconAnalytic)
+        
+        URLSession.shared.dataTask(with: urlRequest){(data, response, error) in
+            if error != nil{
+                print(error!)
+            } else{
+                guard let httpResponse = response as? HTTPURLResponse  else { return }
+                print(httpResponse.statusCode)
             }
             }.resume()
     }
