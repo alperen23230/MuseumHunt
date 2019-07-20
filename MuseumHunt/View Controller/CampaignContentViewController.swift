@@ -18,8 +18,6 @@ class CampaignContentViewController: UIViewController {
     @IBOutlet weak var campaignText: UITextView!
     
     var campaign: Campaign!
-    
-     let urlBase = "https://jwtapi20190719101048.blob.core.windows.net/beamityblob/"
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -9,7 +9,5 @@
 import Foundation
 
 final class ChooseLocationViewModel{
-    
     var locations = [Location]()
-    
 }

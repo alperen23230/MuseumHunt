@@ -35,9 +35,6 @@ class ContentViewController: UIViewController {
     
     @IBOutlet weak var imageThumbnailHeight: NSLayoutConstraint!
     
-    
-    let urlBase = "https://jwtapi20190719101048.blob.core.windows.net/beamityblob/"
-    
     var isPlayAudio = false
     
     var contentVM: ContentViewModel!

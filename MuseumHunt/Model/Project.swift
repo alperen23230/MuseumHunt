@@ -9,5 +9,6 @@
 import Foundation
 
 struct Project: Codable {
+    //This id for Museum Type project id CMS App
     let Id = "61F12FD7-D323-4C79-84AC-08D709F69876"
 }

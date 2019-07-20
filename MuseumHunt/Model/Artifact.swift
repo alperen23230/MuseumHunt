@@ -10,11 +10,9 @@ import Foundation
 import UIKit
 
 struct Artifact: Codable {
-    
     var name: String
     var mainImageURL: String
     var roomName: String
     var floorName: String
     var buildingName: String
-
 }

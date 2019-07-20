@@ -14,7 +14,7 @@ class BeaconModelTests: XCTestCase {
     var sut: Beacon!
     
     override func setUp() {
-        sut = Beacon(name: "first", uuid: "abc", major: 123, minor: 456, proximity: nil)
+        sut = Beacon(name: "first", id: "asd", uuid: "abc", major: 123, minor: 456, proximity: nil)
     }
 
     override func tearDown() {
@@ -23,7 +23,7 @@ class BeaconModelTests: XCTestCase {
 
     func testBeaconModelInit_whenCreate_takeSameValue(){
         
-        let beacon = Beacon(name: "first", uuid: "abc", major: 123, minor: 456, proximity: nil)
+        let beacon = Beacon(name: "first", id: "asd", uuid: "abc", major: 123, minor: 456, proximity: nil)
         
         XCTAssertEqual(sut, beacon)
     }

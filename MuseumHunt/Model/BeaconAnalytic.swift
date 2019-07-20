@@ -9,5 +9,5 @@
 import Foundation
 
 struct BeaconAnalytic: Codable{
-    var id: String
+    var beaconId: String
 }

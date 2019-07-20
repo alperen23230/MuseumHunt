@@ -63,6 +63,10 @@ class ArtifactsTableViewController: UITableViewController {
     
     
     override func viewDidAppear(_ animated: Bool) {
+        checkPageState()
+    }
+    
+    func checkPageState(){
         //This user default for is fetched main page contents at least once
         let isFetched = UserDefaults.standard.bool(forKey: "isFetchedArtifact")
         if launch == "FirstTime" {
@@ -133,7 +137,6 @@ extension ArtifactsTableViewController {
         return 100
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return artifactVM.artifactsCache?.count ?? 0
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

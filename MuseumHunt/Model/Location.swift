@@ -15,5 +15,4 @@ struct Location: Codable {
     var longitude: String
     var photoURL: String
     var distance: Int?
-
 }

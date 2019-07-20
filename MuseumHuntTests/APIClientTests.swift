@@ -36,7 +36,14 @@ class APIClientTests: XCTestCase {
         
         guard let url = APIClient.sharedInstance.urlComponent.url else { XCTFail();return }
         
-        URLSession.shared.dataTask(with: url){(data, response, error) in
+        let location = LocationJSONModel(id: "97082f21-efcd-4eb9-2f4f-08d70c1cd23e")
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = HTTPMethod.post.rawValue
+        urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.httpBody = try? JSONEncoder().encode(location)
+
+        
+        URLSession.shared.dataTask(with: urlRequest){(data, response, error) in
             if error != nil{
                 XCTFail(error!.localizedDescription)
             } else{

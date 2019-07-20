@@ -37,19 +37,35 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
             MyAlert.show(title: "Interactive Tours", description: "Here you can start the interactive tour you can visit the artifacts you want to visit.", buttonTxt: "OK")
         }
         
+        setTableViewDelegateAndDataSource()
+        
+        userNotificationSetting()
+        
+        setLocationManagerDelegate()
+        
+        interactiveTourVM = InteractiveTourViewModel()
+        
+        checkIsTourStart()
+    }
+    
+    func setTableViewDelegateAndDataSource(){
         tableView.delegate = self
         tableView.dataSource = self
-        
+    }
+    
+    func userNotificationSetting(){
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
             print("Permission granted? \(granted)")
         }
         UNUserNotificationCenter.current().delegate = self
-        
+    }
+    
+    func setLocationManagerDelegate(){
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-        
-        interactiveTourVM = InteractiveTourViewModel()
-        
+    }
+    
+    func checkIsTourStart(){
         isStartTour = UserDefaults.standard.bool(forKey: "isStartTour")
         
         if !isStartTour {
@@ -58,11 +74,10 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
         } else {
             startStopButton.animatePulsatingLayer()
             InteractiveTourViewModel.allBeacons.removeAll()
-             let locationID = UserDefaults.standard.string(forKey: "CurrentLocation")
+            let locationID = UserDefaults.standard.string(forKey: "CurrentLocation")
             fetchAllBeacons(locationID: locationID!)
             startStopButton.setTitle("Stop Tour", for: .normal)
         }
-        
     }
     
     func checkFirstTimeTour(){
@@ -84,7 +99,7 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
     
     @IBAction func startStopButtonClicked(_ sender: Any) {
         
-         isStartTour = UserDefaults.standard.bool(forKey: "isStartTour")
+        isStartTour = UserDefaults.standard.bool(forKey: "isStartTour")
         
         if !isStartTour {
             if currentBluetoothState == "On" {
@@ -139,7 +154,7 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
                     InteractiveTourViewModel.allBeacons.append(contentsOf: beacons)
                     for beacon in InteractiveTourViewModel.allBeacons {
                         guard let beaconUUID = UUID(uuidString: beacon.uuid) else { return }
-                        let beaconRegion = CLBeaconRegion(proximityUUID: beaconUUID, major: CLBeaconMajorValue(beacon.major), minor: CLBeaconMinorValue(beacon.minor), identifier: beaconUUID.uuidString)
+                        let beaconRegion = CLBeaconRegion(proximityUUID: beaconUUID, major: CLBeaconMajorValue(beacon.major), minor: CLBeaconMinorValue(beacon.minor), identifier: beacon.id!)
                         
                         beaconRegion.notifyOnEntry = true
                         beaconRegion.notifyOnExit = true
@@ -173,7 +188,7 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         let knownBeacons = beacons.filter(){ $0.proximity != .unknown }
         if knownBeacons.count > 0 {
-            checkBeaconForProximity(beaconRegion: knownBeacons.first!)
+            checkBeaconForProximity(beaconRegion: knownBeacons.first!, identifierRegion: region)
         } else {
             print("unknown")
         }
@@ -181,52 +196,44 @@ class InteractiveTourViewController: UIViewController, CLLocationManagerDelegate
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         //Post for analytic
-        let beaconAnalytic = BeaconAnalytic(id: region.identifier)
-        APIClient.sharedInstance.postAnalytic(beaconAnalytic: beaconAnalytic)
-        DispatchQueue.main.async {
-            self.postNotification(withBody: "Please open your app and see the content")
-            print("didEnter")
-        }
+        self.postNotification(withBody: "Please open your app and see the content")
+        print("didEnter")
     }
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        postNotification(withBody: "Exit")
         print("didExit")
     }
     
-    func checkBeaconForProximity(beaconRegion: CLBeacon){
-        var beacon = Beacon(name: nil, uuid: beaconRegion.proximityUUID.uuidString, major: Int(truncating: beaconRegion.major), minor: Int(truncating: beaconRegion.minor), proximity: nil)
+    func checkBeaconForProximity(beaconRegion: CLBeacon, identifierRegion: CLBeaconRegion){
+        var beacon = Beacon(name: nil, id: nil, uuid: beaconRegion.proximityUUID.uuidString, major: Int(truncating: beaconRegion.major), minor: Int(truncating: beaconRegion.minor), proximity: nil)
         
-                switch beaconRegion.proximity {
-                case .far:
-                    print("far")
-                    let currentBeaconIndex = self.beaconRegions.firstIndex(of: CLBeaconRegion(proximityUUID: beaconRegion.proximityUUID, major: CLBeaconMajorValue(truncating: beaconRegion.major), minor: CLBeaconMinorValue(truncating: beaconRegion.minor), identifier: beaconRegion.proximityUUID.uuidString))
-                   // self.locationManager.stopRangingBeacons(in: self.beaconRegions[currentBeaconIndex!])
-                    beacon.proximity = "Far"
-                    if interactiveTourVM.lastPostedBeacon != beacon {
-                        getContentForBeacon(beacon: beacon, beaconRegion: self.beaconRegions[currentBeaconIndex!])
-                        interactiveTourVM.lastPostedBeacon = beacon
-                    }
-                case .near:
-                    print("near")
-                    beacon.proximity = "Near"
-                    let currentBeaconIndex = self.beaconRegions.firstIndex(of: CLBeaconRegion(proximityUUID: beaconRegion.proximityUUID, major: CLBeaconMajorValue(truncating: beaconRegion.major), minor: CLBeaconMinorValue(truncating: beaconRegion.minor), identifier: beaconRegion.proximityUUID.uuidString))
-                   
-                    if interactiveTourVM.lastPostedBeacon != beacon {
-                        getContentForBeacon(beacon: beacon, beaconRegion: self.beaconRegions[currentBeaconIndex!])
-                        interactiveTourVM.lastPostedBeacon = beacon
-                    }
-                    
-                case .immediate:
-                    print("immediate")
-                    let currentBeaconIndex = self.beaconRegions.firstIndex(of: CLBeaconRegion(proximityUUID: beaconRegion.proximityUUID, major: CLBeaconMajorValue(truncating: beaconRegion.major), minor: CLBeaconMinorValue(truncating: beaconRegion.minor), identifier: beaconRegion.proximityUUID.uuidString))
-                    
-                    beacon.proximity = "Immediate"
-                    if interactiveTourVM.lastPostedBeacon != beacon {
-                        getContentForBeacon(beacon: beacon, beaconRegion: self.beaconRegions[currentBeaconIndex!])
-                        interactiveTourVM.lastPostedBeacon = beacon
-                    }
-                default:
-                    print("Unknown")
-                }
+        switch beaconRegion.proximity {
+        case .far:
+            print("far")
+            beacon.proximity = "Far"
+            if interactiveTourVM.lastPostedBeacon != beacon {
+                getContentForBeacon(beacon: beacon, beaconRegion: identifierRegion)
+                interactiveTourVM.lastPostedBeacon = beacon
+            }
+        case .near:
+            print("near")
+            beacon.proximity = "Near"
+            if interactiveTourVM.lastPostedBeacon != beacon {
+                getContentForBeacon(beacon: beacon, beaconRegion: identifierRegion)
+                interactiveTourVM.lastPostedBeacon = beacon
+            }
+            
+        case .immediate:
+            print("immediate")
+            
+            beacon.proximity = "Immediate"
+            if interactiveTourVM.lastPostedBeacon != beacon {
+                getContentForBeacon(beacon: beacon, beaconRegion: identifierRegion)
+                interactiveTourVM.lastPostedBeacon = beacon
+            }
+        default:
+            print("Unknown")
+        }
     }
     
     func getContentForBeacon(beacon: Beacon, beaconRegion: CLBeaconRegion){

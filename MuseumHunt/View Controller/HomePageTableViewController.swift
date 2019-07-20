@@ -14,7 +14,6 @@ class HomePageTableViewController: UITableViewController {
 
     var mainPageVM: MainPageContentViewModel!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -103,6 +102,7 @@ class HomePageTableViewController: UITableViewController {
             }
         }
     }
+    
     deinit {
         tableView.dg_removePullToRefresh()
     }

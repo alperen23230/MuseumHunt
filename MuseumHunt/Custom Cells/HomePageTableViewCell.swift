@@ -36,7 +36,6 @@ class HomePageTableViewCell: UITableViewCell {
     }
     
     func setHomePageContent(content: MainPageContentCache){
-        let urlBase = "https://jwtapi20190719101048.blob.core.windows.net/beamityblob/"
         guard let url = URL(string: urlBase + content.mainImageURL) else { return }
         homePageContentImageView.sd_setImage(with: url)
         homePageTitleLabel.text = content.name

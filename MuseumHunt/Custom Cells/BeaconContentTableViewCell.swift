@@ -30,7 +30,6 @@ class BeaconContentTableViewCell: UITableViewCell {
     }
     
     func setBeaconContent(content: RelationBeacon){
-        let urlBase = "https://jwtapi20190719101048.blob.core.windows.net/beamityblob/"
         guard let imageURL = content.mainImageURL else { return }
         guard let url = URL(string: urlBase + imageURL) else { return }
         beaconContentImageView.sd_setImage(with: url)

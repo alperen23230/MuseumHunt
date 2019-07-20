@@ -16,6 +16,9 @@ var launch = ""
 
 var currentBluetoothState = ""
 
+//This url base for photos, videos, audios ... from API
+let urlBase = "https://jwtapi20190719101048.blob.core.windows.net/beamityblob/"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -35,12 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         manager = CBCentralManager()
         manager.delegate = self
-        do{
-            try Realm()
-        }
-        catch{
-            print("Error: \(error)")
-        }
         
         let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
         
