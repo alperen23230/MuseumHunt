@@ -7,6 +7,10 @@ CMS with iBeacon Museum App for iOS
 
 <img src="https://user-images.githubusercontent.com/34453494/64910635-28ce1d80-d721-11e9-8348-b7bae4ad81dc.png" width="600" height="600">
 
+<img src="https://user-images.githubusercontent.com/34453494/65148210-6932e180-da28-11e9-919b-720b507c6aa5.png" width="600" height="600">
+
+<img src="https://user-images.githubusercontent.com/34453494/65148360-af884080-da28-11e9-9be2-f2eab2639c4e.png" width="600" height="600">
+
 <img src="https://user-images.githubusercontent.com/34453494/64910653-4d29fa00-d721-11e9-9644-ab24e5176650.png" width="600" height="600">
 
 <img src="https://user-images.githubusercontent.com/34453494/64910495-b90b6300-d71f-11e9-9f61-495d0bfd2378.png" width="600" height="600">
